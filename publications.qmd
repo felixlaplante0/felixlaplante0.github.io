@@ -1,0 +1,17 @@
+---
+title: "Publications"
+---
+
+::: {.pub-entry}
+**Scalable Spectral Clustering Based on Vector Quantization**
+[Félix Laplante, Christophe Ambroise]{.pub-authors}
+[*Computo*, December 2024]{.pub-venue}
+[[doi.org/10.57750/1gr8-bk61](https://doi.org/10.57750/1gr8-bk61)]{.pub-link}
+:::
+
+::: {.pub-entry}
+**A General Framework for Joint Multi-State Models**
+[Félix Laplante, Christophe Ambroise]{.pub-authors}
+[*arXiv*, October 2025]{.pub-venue}
+[[arxiv.org/pdf/2510.07128](https://arxiv.org/pdf/2510.07128)]{.pub-link}
+:::

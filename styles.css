@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;1,400&display=swap');
+
+body {
+  margin: 0 auto;
+}
+
+.quote-block {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 1.15rem;
+  border-left: 2px solid #aaa;
+  margin: 2rem 0;
+  padding: 0.8rem 1.4rem;
+  color: #333;
+}
+
+.quote-translation {
+  font-size: 0.88rem;
+  color: #777;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.quote-author {
+  font-size: 0.82rem;
+  color: #999;
+  display: block;
+  margin-top: 0.6rem;
+  letter-spacing: 0.03em;
+}
+
+.profile-pic {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+}
+
+.pic-wrapper {
+  float: right;
+  margin-left: 2rem;
+  text-align: center;
+  width: 180px;
+}
+
+.pic-wrapper p {
+  font-size: 0.78rem;
+  color: #999;
+  font-style: italic;
+  margin-top: 0.3rem;
+}
+
+.pub-entry {
+  margin-bottom: 1.4rem;
+  line-height: 1.7;
+}
+
+.pub-authors {
+  display: block;
+  color: #555;
+  font-size: 0.93rem;
+}
+
+.pub-venue {
+  display: block;
+  color: #777;
+  font-size: 0.88rem;
+}
+
+.pub-link {
+  display: block;
+  font-size: 0.88rem;
+}
+
+.navbar-brand img {
+  height: 52px !important;
+  max-height: 52px !important;
+  margin-right: 10px;
+}

@@ -1,0 +1,10 @@
+---
+title: "Software"
+---
+
+| Package | Description |
+|---|---|
+| [jmstate](https://github.com/felixlaplante0/jmstate) | `Python` package for joint multi-state models. Implements estimation and prediction methods combining longitudinal markers with multi-state survival processes, with uniform high-probability control of survival functions. |
+| [uniformbands](https://github.com/felixlaplante0/uniformbands) | `Python` package deriving non-asymptotic uniform confidence bands for survival functions in large probability, usable for rigorous inference under censoring. |
+| [sbcluster](https://github.com/felixlaplante0/sbcluster) | `Python` package implementing Spectral Bridges, a scalable topological clustering algorithm. Partitions data via Voronoï regions then detects cluster boundaries and low-density zones through scale-invariant spectral methods. |
+| [fastkmeanspp](https://github.com/felixlaplante0/fastkmeanspp) | Fast `C++`-backed k-means++ initialisation for `Python`. Accelerates the seeding step with a `BLAS` routine for probabilistic distance-based scheme, with potential speedups of $\times 10$ compared to `scikit-learn`. |

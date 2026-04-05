@@ -1,0 +1,28 @@
+---
+title: "Talks & Events"
+---
+
+## Talks
+
+::: {.pub-entry}
+**Selecting the Number of Clusters in a Clustering Algorithm**
+[*Journées de la Statistique* (SFDS), June 2025]{.pub-venue}
+Oral presentation introducing a data-driven model selection criterion for choosing the number of classes in the Spectral Bridges clustering algorithm. The method leverages the scale-invariant affinity structure of the algorithm to define a stability-based score, avoiding cross-validation and working directly from the spectral decomposition.
+:::
+
+::: {.pub-entry}
+**Uniform High-Probability Bands for Survival Functions**
+[*StatMathAppli*, September 2025 — Poster]{.pub-venue}
+Poster presenting non-asymptotic uniform confidence bands for survival estimators derived under a joint modelling framework. The bands hold with high probability uniformly over time, providing rigorous inferential guarantees for censored survival data beyond classical pointwise confidence intervals.
+:::
+
+---
+
+## Attended Events
+
+| Date | Event |
+|---|---|
+| June 2025 | Working group on Causality — MIA Paris-Saclay |
+| July 2025 | Working group on Topological Data Analysis — LaMME |
+| October 2025 | Winter School on Causality and Explainable AI |
+| March 2026 | Workshop on Uncertainty Quantification and Causality |

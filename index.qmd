@@ -1,0 +1,27 @@
+---
+title: "Félix Laplante"
+---
+
+::: {.pic-wrapper}
+![](assets/logo.svg){.profile-pic}
+
+My beloved zucchini
+:::
+
+::: {.quote-block}
+*La perfection est atteinte, non pas lorsqu'il n'y a plus rien à ajouter, mais lorsqu'il n'y a plus rien à retirer.*
+
+[*Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.*]{.quote-translation}
+
+[— Antoine de Saint-Exupéry]{.quote-author}
+:::
+
+I am a future PhD candidate in **causality** at Laboratoire de Mathématiques et Modélisation d'Évry (LaMME). As a graduate from Mathematics and Artificial Intelligence at Université Paris-Saclay, my interests mainly lie at the intersection of mathematical statistics, uncertainty quantification, survival analysis, and causal inference. I develop theoretical foundations and practical algorithms, with a particular taste for highly optimized `Python`.
+
+**Contact:** [research.felixlaplante@gmail.com](mailto:research.felixlaplante@gmail.com) · [GitHub](https://github.com/felixlaplante0)
+
+---
+
+Beyond my research, I try to stay grounded through more tangible activities. I travel whenever possible, spend time in the humbling presence of the Alps, play the piano regularly, and enjoy gardening.
+
+I'm also interested in macrophotography, which consists in taking close-up photos of insects, spiders, and small plants as subjects that are often overlooked or even frowned upon. What draws me to it is the idea of slowing down and really paying attention to these small forms of life, and trying to show them in a way that feels fair to them.
