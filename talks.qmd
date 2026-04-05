@@ -7,7 +7,7 @@ title: "Talks & Events"
 ::: {.pub-entry}
 **Selecting the Number of Clusters in a Clustering Algorithm**
 [*Journées de la Statistique* (SFDS), June 2025]{.pub-venue}
-Oral presentation introducing a data-driven model selection criterion for choosing the number of classes in the Spectral Bridges clustering algorithm. The method leverages the scale-invariant affinity structure of the algorithm to define a stability-based score, avoiding cross-validation and working directly from the spectral decomposition.
+Oral presentation introducing a data-driven model selection criterion for choosing the number of classes in the Spectral Bridges clustering algorithm. The method leverages the scale-invariant affinity structure of the algorithm to define a connectivity-based score, avoiding cross-validation and working directly from the spectral decomposition.
 :::
 
 ::: {.pub-entry}
