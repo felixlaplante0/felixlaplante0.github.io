@@ -15,6 +15,15 @@ website:
         text: Software
       - href: talks.qmd
         text: Talks
+      - href: contact.qmd
+        text: Contact
+    right:
+      - icon: envelope
+        href: mailto:research.felixlaplante@gmail.com
+        aria-label: Email
+      - icon: github
+        href: https://github.com/felixlaplante0
+        aria-label: GitHub
 
 format:
   html:

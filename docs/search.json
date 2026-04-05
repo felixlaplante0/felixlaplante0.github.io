@@ -21,27 +21,6 @@
     "text": "Attended Events\n\n\n\nDate\nEvent\n\n\n\n\nJune 2025\nWorking group on Causality — MIA Paris-Saclay\n\n\nJuly 2025\nWorking group on Topological Data Analysis — LaMME\n\n\nOctober 2025\nWinter School on Causality and Explainable AI\n\n\nMarch 2026\nWorkshop on Uncertainty Quantification and Causality"
   },
   {
-    "objectID": "software.html",
-    "href": "software.html",
-    "title": "Software",
-    "section": "",
-    "text": "Package\nDescription\n\n\n\n\njmstate\nPython package for joint multi-state models. Implements estimation and prediction methods combining longitudinal markers with multi-state survival processes, with uniform high-probability control of survival functions.\n\n\nuniformbands\nPython package deriving non-asymptotic uniform confidence bands for survival functions in large probability, usable for rigorous inference under censoring.\n\n\nsbcluster\nPython package implementing Spectral Bridges, a scalable topological clustering algorithm. Partitions data via Voronoï regions then detects cluster boundaries and low-density zones through scale-invariant spectral methods.\n\n\nfastkmeanspp\nFast C++-backed k-means++ initialisation for Python. Accelerates the seeding step with a BLAS routine for probabilistic distance-based scheme, with potential speedups of \\(\\times 10\\) compared to scikit-learn."
-  },
-  {
-    "objectID": "publications.html",
-    "href": "publications.html",
-    "title": "Publications",
-    "section": "",
-    "text": "Scalable Spectral Clustering Based on Vector Quantization Félix Laplante, Christophe Ambroise Computo, December 2024 doi.org/10.57750/1gr8-bk61\n\n\nA General Framework for Joint Multi-State Models Félix Laplante, Christophe Ambroise arXiv, October 2025 arxiv.org/pdf/2510.07128"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Félix Laplante",
-    "section": "",
-    "text": "My beloved zucchini\n\n\nLa perfection est atteinte, non pas lorsqu’il n’y a plus rien à ajouter, mais lorsqu’il n’y a plus rien à retirer.\nPerfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.\n— Antoine de Saint-Exupéry\n\nI am a future PhD candidate in causality at Laboratoire de Mathématiques et Modélisation d’Évry (LaMME). As a graduate from Mathematics and Artificial Intelligence at Université Paris-Saclay, my interests mainly lie at the intersection of mathematical statistics, uncertainty quantification, survival analysis, and causal inference. I develop theoretical foundations and practical algorithms, with a particular taste for highly optimized Python.\nContact: research.felixlaplante@gmail.com · GitHub\n\nBeyond my research, I try to stay grounded through more tangible activities. I travel whenever possible, spend time in the humbling presence of the Alps, play the piano regularly, and enjoy gardening.\nI’m also interested in macrophotography, which consists in taking close-up photos of insects, spiders, and small plants as subjects that are often overlooked or even frowned upon. What draws me to it is the idea of slowing down and really paying attention to these small forms of life, and trying to show them in a way that feels fair to them."
-  },
-  {
     "objectID": "research.html",
     "href": "research.html",
     "title": "Research",
@@ -61,5 +40,33 @@
     "title": "Research",
     "section": "Software",
     "text": "Software\n\n\n\nPackage\nDescription\n\n\n\n\njmstate\nPython package for joint multi-state models. Implements estimation and prediction methods combining longitudinal markers with multi-state survival processes, with uniform high-probability control of survival functions.\n\n\nuniformbands\nPython package deriving non-asymptotic uniform confidence bands for survival functions in large probability, usable for rigorous inference under censoring.\n\n\nsbcluster\nPython package implementing Spectral Bridges, a scalable topological clustering algorithm. Partitions data via Voronoï regions then detects cluster boundaries and low-density zones through scale-invariant spectral methods.\n\n\nfastkmeanspp\nFast C++-backed k-means++ initialisation for Python. Accelerates the seeding step with a BLAS routine for probabilistic distance-based scheme, with potential speedups of \\(\\times 10\\) compared to scikit-learn."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Félix Laplante",
+    "section": "",
+    "text": "My beloved zucchini\n\n\nLa perfection est atteinte, non pas lorsqu’il n’y a plus rien à ajouter, mais lorsqu’il n’y a plus rien à retirer.\nPerfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.\n— Antoine de Saint-Exupéry\n\nI am a future PhD candidate in causality at Laboratoire de Mathématiques et Modélisation d’Évry (LaMME). As a graduate from Mathematics and Artificial Intelligence at Université Paris-Saclay, my interests mainly lie at the intersection of mathematical statistics, uncertainty quantification, survival analysis, and causal inference. I develop theoretical foundations and practical algorithms, with a particular taste for highly optimized Python.\n\nBeyond my research, I try to stay grounded through more tangible activities. I travel whenever possible, spend time in the humbling presence of the Alps, play the piano regularly, and enjoy gardening.\nI’m also interested in macrophotography, which consists in taking close-up photos of insects, spiders, and small plants as subjects that are often overlooked or even frowned upon. What draws me to it is the idea of slowing down and really paying attention to these small forms of life, and trying to show them in a way that feels fair to them."
+  },
+  {
+    "objectID": "contact.html",
+    "href": "contact.html",
+    "title": "Contact",
+    "section": "",
+    "text": "Félix Laplante\nLaboratoire de Mathématiques et Modélisation d’Évry (LaMME)\nUniversité Paris-Saclay, Univ Évry\n23 boulevard de France\n91034 Évry-Courcouronnes, France\nresearch.felixlaplante@gmail.com"
+  },
+  {
+    "objectID": "publications.html",
+    "href": "publications.html",
+    "title": "Publications",
+    "section": "",
+    "text": "Scalable Spectral Clustering Based on Vector Quantization Félix Laplante, Christophe Ambroise Computo, December 2024 doi.org/10.57750/1gr8-bk61\n\n\nA General Framework for Joint Multi-State Models Félix Laplante, Christophe Ambroise arXiv, October 2025 arxiv.org/pdf/2510.07128"
+  },
+  {
+    "objectID": "software.html",
+    "href": "software.html",
+    "title": "Software",
+    "section": "",
+    "text": "Package\nDescription\n\n\n\n\njmstate\nPython package for joint multi-state models. Implements estimation and prediction methods combining longitudinal markers with multi-state survival processes, with uniform high-probability control of survival functions.\n\n\nuniformbands\nPython package deriving non-asymptotic uniform confidence bands for survival functions in large probability, usable for rigorous inference under censoring.\n\n\nsbcluster\nPython package implementing Spectral Bridges, a scalable topological clustering algorithm. Partitions data via Voronoï regions then detects cluster boundaries and low-density zones through scale-invariant spectral methods.\n\n\nfastkmeanspp\nFast C++-backed k-means++ initialisation for Python. Accelerates the seeding step with a BLAS routine for probabilistic distance-based scheme, with potential speedups of \\(\\times 10\\) compared to scikit-learn."
   }
 ]
