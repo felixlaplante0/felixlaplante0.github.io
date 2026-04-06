@@ -93,21 +93,29 @@ body {
 }
 
 .pub-expand {
-  margin-top: 0.7rem;
-  font-size: 0.88rem;
-  color: #444;
-  line-height: 1.65;
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: #374151;
+  line-height: 1.75;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-left: 3px solid #9ca3af;
+  border-radius: 0 8px 8px 0;
+  padding: 0.9rem 1.15rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
 .pub-expand pre {
-  background: #f8f8f8;
-  border: 1px solid #e5e5e5;
-  border-radius: 3px;
-  padding: 0.8rem 1rem;
-  font-size: 0.78rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 0.9rem 1.1rem;
+  font-size: 0.76rem;
+  line-height: 1.6;
   overflow-x: auto;
   white-space: pre;
   margin: 0;
+  color: #334155;
 }
 
 .navbar-brand img {
