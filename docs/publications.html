@@ -160,12 +160,75 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="pub-entry">
-<p><strong>Scalable Spectral Clustering Based on Vector Quantization</strong> <span class="pub-authors">Félix Laplante, Christophe Ambroise</span> <span class="pub-venue"><em>Computo</em>, December 2024</span> <span class="pub-link"><a href="https://doi.org/10.57750/1gr8-bk61">doi.org/10.57750/1gr8-bk61</a></span></p>
+<div class="pub-year">
+2025
 </div>
 <div class="pub-entry">
-<p><strong>A General Framework for Joint Multi-State Models</strong> <span class="pub-authors">Félix Laplante, Christophe Ambroise</span> <span class="pub-venue"><em>arXiv</em>, October 2025</span> <span class="pub-link"><a href="https://arxiv.org/pdf/2510.07128">arxiv.org/pdf/2510.07128</a></span></p>
+<p>
+<strong>A General Framework for Joint Multi-State Models</strong>
+</p>
+<p class="pub-authors">
+Félix Laplante, Christophe Ambroise
+</p>
+<p class="pub-venue">
+<em>arXiv preprint</em>, October 2025
+</p>
+<div class="pub-btns">
+<p><button class="btn btn-sm btn-outline-primary" onclick="togglePub(this, 'abs-2')">Abs</button> <a class="btn btn-sm btn-outline-danger" href="https://arxiv.org/abs/2510.07128" target="_blank">arXiv</a> <a class="btn btn-sm btn-outline-success" href="https://github.com/felixlaplante0/jmstate" target="_blank">Code</a> <button class="btn btn-sm btn-outline-secondary" onclick="togglePub(this, 'bib-2')">Bib</button> <a class="btn btn-sm btn-outline-dark" href="https://arxiv.org/pdf/2510.07128" target="_blank">PDF</a></p>
 </div>
+<div id="abs-2" class="pub-expand" hidden="">
+<p>This paper proposes a unified framework for jointly modeling longitudinal biomarkers and multi-state event processes on directed graphs, accommodating both Markovian and semi-Markovian structures with recurrent cycles and terminal absorptions. Complete likelihood, model selection criteria, and scalable inference procedures based on stochastic gradient descent enable large-scale applications. Nonlinear longitudinal submodels are integrated with shared latent structures, and a dynamic prediction framework provides individualized state-transition probabilities and personalized risk assessments. The approach is validated through simulations and application to the PAQUID cohort, showing accurate parameter recovery and individualized predictions.</p>
+</div>
+<div id="bib-2" class="pub-expand" hidden="">
+<pre>@misc{laplante2025joint,
+  title         = {A General Framework for Joint Multi-State Models},
+  author        = {Laplante, F{\'e}lix and Ambroise, Christophe},
+  year          = {2025},
+  eprint        = {2510.07128},
+  archiveprefix = {arXiv},
+  primaryclass  = {stat.ME},
+  url           = {https://arxiv.org/abs/2510.07128}
+}</pre>
+</div>
+</div>
+<div class="pub-year">
+2024
+</div>
+<div class="pub-entry">
+<p>
+<strong>Spectral Bridges: Scalable Spectral Clustering Based on Vector Quantization</strong>
+</p>
+<p class="pub-authors">
+Félix Laplante, Christophe Ambroise
+</p>
+<p class="pub-venue">
+<em>Computo</em>, December 2024
+</p>
+<div class="pub-btns">
+<p><button class="btn btn-sm btn-outline-primary" onclick="togglePub(this, 'abs-1')">Abs</button> <a class="btn btn-sm btn-outline-danger" href="https://arxiv.org/abs/2407.07430" target="_blank">arXiv</a> <a class="btn btn-sm btn-outline-success" href="https://github.com/felixlaplante0/published-202412-ambroise-spectral" target="_blank">Code</a> <button class="btn btn-sm btn-outline-secondary" onclick="togglePub(this, 'bib-1')">Bib</button> <a class="btn btn-sm btn-outline-dark" href="https://arxiv.org/pdf/2407.07430" target="_blank">PDF</a></p>
+</div>
+<div id="abs-1" class="pub-expand" hidden="">
+<p>In this paper, Spectral Bridges, a novel clustering algorithm, is introduced. This algorithm builds upon the traditional k-means and spectral clustering frameworks by subdividing data into small Voronoï regions, which are subsequently merged according to a connectivity measure. Drawing inspiration from Support Vector Machine’s margin concept, a non-parametric clustering approach is proposed, building an affinity margin between each pair of Voronoï regions. This approach delineates intricate, non-convex cluster structures and is robust to hyperparameter choice. The numerical experiments underscore Spectral Bridges as a fast, robust, and versatile tool for clustering tasks spanning diverse domains. Its efficacy extends to large-scale scenarios encompassing both real-world and synthetic datasets.</p>
+</div>
+<div id="bib-1" class="pub-expand" hidden="">
+<pre>@article{laplante2024spectral,
+  title     = {Spectral Bridges: Scalable Spectral Clustering Based on Vector Quantization},
+  author    = {Laplante, F{\'e}lix and Ambroise, Christophe},
+  journal   = {Computo},
+  year      = {2024},
+  doi       = {10.57750/1gr8-bk61},
+  issn      = {2824-7795},
+  publisher = {French Statistical Society}
+}</pre>
+</div>
+</div>
+<script>
+function togglePub(btn, id) {
+  const el = document.getElementById(id);
+  el.hidden = !el.hidden;
+  btn.classList.toggle('active', !el.hidden);
+}
+</script>
 
 
 

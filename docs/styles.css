@@ -48,26 +48,66 @@ body {
   margin-top: 0.3rem;
 }
 
+.pub-year {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #888;
+  margin: 2rem 0 0.8rem;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 0.2rem;
+}
+
 .pub-entry {
-  margin-bottom: 1.4rem;
-  line-height: 1.7;
+  margin-bottom: 1.8rem;
+  line-height: 1.65;
+}
+
+.pub-entry p {
+  margin: 0 0 0.15rem;
 }
 
 .pub-authors {
-  display: block;
   color: #555;
-  font-size: 0.93rem;
+  font-size: 0.92rem;
 }
 
 .pub-venue {
-  display: block;
-  color: #777;
+  color: #888;
   font-size: 0.88rem;
 }
 
-.pub-link {
-  display: block;
+.pub-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  margin-top: 0.55rem;
+}
+
+.pub-btns .btn {
+  font-size: 0.74rem;
+  padding: 0.1rem 0.55rem;
+  line-height: 1.6;
+  text-decoration: none;
+}
+
+.pub-expand {
+  margin-top: 0.7rem;
   font-size: 0.88rem;
+  color: #444;
+  line-height: 1.65;
+}
+
+.pub-expand pre {
+  background: #f8f8f8;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  padding: 0.8rem 1rem;
+  font-size: 0.78rem;
+  overflow-x: auto;
+  white-space: pre;
+  margin: 0;
 }
 
 .navbar-brand img {
