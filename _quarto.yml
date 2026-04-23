@@ -21,9 +21,15 @@ website:
       - icon: envelope
         href: mailto:research.felixlaplante@gmail.com
         aria-label: Email
+      - icon: mortarboard-fill
+        href: https://scholar.google.com/citations?user=uRGOOqIAAAAJ
+        aria-label: Google Scholar
       - icon: github
         href: https://github.com/felixlaplante0
         aria-label: GitHub
+      - icon: linkedin
+        href: https://www.linkedin.com/in/felix-laplante/
+        aria-label: LinkedIn
 
 format:
   html:
