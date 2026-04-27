@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;1,400&display=swap');
+
+body {
+  margin: 0 auto;
+}
+
+.quote-block {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 1.15rem;
+  border-left: 2px solid #aaa;
+  margin: 2rem 0;
+  padding: 0.8rem 1.4rem;
+  color: #333;
+}
+
+.quote-translation {
+  font-size: 0.88rem;
+  color: #777;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.quote-author {
+  font-size: 0.82rem;
+  color: #999;
+  display: block;
+  margin-top: 0.6rem;
+  letter-spacing: 0.03em;
+}
+
+.profile-pic {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+}
+
+.pic-wrapper {
+  float: right;
+  margin-left: 2rem;
+  text-align: center;
+  width: 180px;
+}
+
+.pic-wrapper p {
+  font-size: 0.78rem;
+  color: #999;
+  font-style: italic;
+  margin-top: 0.3rem;
+}
+
+.pub-year {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #888;
+  margin: 2rem 0 0.8rem;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 0.2rem;
+}
+
+.pub-entry {
+  margin-bottom: 1.8rem;
+  line-height: 1.65;
+}
+
+.pub-entry p {
+  margin: 0 0 0.15rem;
+}
+
+.pub-authors {
+  color: #555;
+  font-size: 0.92rem;
+}
+
+.pub-venue {
+  color: #888;
+  font-size: 0.88rem;
+}
+
+.pub-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  margin-top: 0.55rem;
+}
+
+.pub-btns .btn {
+  font-size: 0.74rem;
+  padding: 0.1rem 0.55rem;
+  line-height: 1.6;
+  text-decoration: none;
+}
+
+.pub-expand {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: #374151;
+  line-height: 1.75;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-left: 3px solid #9ca3af;
+  border-radius: 0 8px 8px 0;
+  padding: 0.9rem 1.15rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.pub-expand pre {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 0.9rem 1.1rem;
+  font-size: 0.76rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  white-space: pre;
+  margin: 0;
+  color: #334155;
+}
+
+.navbar-brand img {
+  height: 48px !important;
+  max-height: 48px !important;
+  margin-right: 10px;
+}
