@@ -4,7 +4,7 @@ project:
 
 website:
   title: "Félix Laplante"
-  sitemap: true
+  site-url: https://felixlaplante0.github.io/
   navbar:
     logo: assets/logo.svg
     left:
