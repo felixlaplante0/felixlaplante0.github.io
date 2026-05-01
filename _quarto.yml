@@ -36,3 +36,6 @@ format:
     theme: cosmo
     css: styles.css
     toc: false
+
+resources:
+  - google58feed90c4473f70.html
