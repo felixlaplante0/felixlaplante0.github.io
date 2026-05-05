@@ -12,7 +12,7 @@ Oral presentation introducing a data-driven model selection criterion for choosi
 
 ::: {.pub-entry}
 **Uniform High-Probability Bands for Survival Functions**
-[*StatMathAppli*, September 2025 — Poster]{.pub-venue}
+[*StatMathAppli*, September 2025]{.pub-venue}
 Poster presenting non-asymptotic uniform confidence bands for survival estimators derived under a joint modelling framework. The bands hold with high probability uniformly over time, providing rigorous inferential guarantees for censored survival data beyond classical pointwise confidence intervals.
 :::
 
