@@ -5,6 +5,7 @@ project:
 website:
   title: "Félix Laplante"
   site-url: https://felixlaplante0.github.io/
+  favicon: assets/logo.svg
   navbar:
     logo: assets/logo.svg
     left:
