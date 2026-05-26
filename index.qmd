@@ -23,3 +23,5 @@ I am a future PhD candidate in **causality** at Laboratoire de Mathématiques et
 Beyond my research, I try to stay grounded through more tangible activities. I travel whenever possible, spend time in the humbling presence of the Alps, play the piano regularly, and enjoy gardening.
 
 I'm also interested in macrophotography, which consists in taking close-up photos of insects, spiders, and small plants as subjects that are often overlooked or even frowned upon. What draws me to it is the idea of slowing down and really paying attention to these small forms of life, and trying to show them in a way that feels fair to them.
+
+{{< include _news.md >}}

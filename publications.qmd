@@ -2,6 +2,35 @@
 title: "Publications"
 ---
 
+<div class="pub-year">2026</div>
+
+<div class="pub-entry">
+<p><strong>A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores</strong></p>
+<p class="pub-authors">Félix Laplante</p>
+<p class="pub-venue"><em>arXiv preprint</em>, May 2026</p>
+<div class="pub-btns">
+  <button class="btn btn-sm btn-outline-primary" onclick="togglePub(this, 'abs-3')">Abs</button>
+  <a class="btn btn-sm btn-outline-danger" href="https://arxiv.org/abs/2605.25852" target="_blank">arXiv</a>
+  <a class="btn btn-sm btn-outline-success" href="https://github.com/felixlaplante0/pitcp/tree/paper" target="_blank">Code</a>
+  <button class="btn btn-sm btn-outline-secondary" onclick="togglePub(this, 'bib-3')">Bib</button>
+  <a class="btn btn-sm btn-outline-dark" href="https://arxiv.org/pdf/2605.25852" target="_blank">PDF</a>
+</div>
+<div id="abs-3" class="pub-expand" hidden>
+While Conformal Prediction (CP) has proven to be a powerful framework for uncertainty quantification, guaranteeing conditional coverage remains a central challenge. Although finite-sample, distribution-free conditional validity is known to be impossible without structural assumptions, we show that it is fundamentally equivalent to constructing a nonconformity score whose distribution is independent of the features. This theoretical characterization motivates PIT-CP, a new post-processing correction that maps any base nonconformity score to an approximately invariant one while preserving its geometry, interpretability, and marginal coverage. This perspective is particularly appealing in practice, since it may be neither economical nor time-effective to retrain a full generative model when a strong prediction-driven model already provides highly accurate point estimates. Our procedure reduces the problem to one-dimensional conditional density estimation on the induced score, rather than full conditional density estimation on the original outcome space. We show how to estimate this transform in practice and derive bounds on the conditional coverage gap, alongside volumetric and symmetric-difference bounds. We present known minimax-optimal conditional estimation techniques while also motivating the use of modern conditional density estimators, including Mixture Density Networks and Conditional Normalizing Flows. Finally, we empirically demonstrate on a variety of datasets that our PIT-CP procedure matches or outperforms many state-of-the-art conformal prediction strategies with minimal effort and computational cost.
+</div>
+<div id="bib-3" class="pub-expand" hidden>
+<pre>@misc{laplante2026post,
+  title         = {A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores},
+  author        = {Laplante, F{\'e}lix},
+  year          = {2026},
+  eprint        = {2605.25852},
+  archiveprefix = {arXiv},
+  primaryclass  = {stat.ME},
+  url           = {https://arxiv.org/abs/2605.25852}
+}</pre>
+</div>
+</div>
+
 <div class="pub-year">2025</div>
 
 <div class="pub-entry">
@@ -16,7 +45,7 @@ title: "Publications"
   <a class="btn btn-sm btn-outline-dark" href="https://arxiv.org/pdf/2510.07128" target="_blank">PDF</a>
 </div>
 <div id="abs-2" class="pub-expand" hidden>
-This paper proposes a unified framework for jointly modeling longitudinal biomarkers and multi-state event processes on directed graphs, accommodating both Markovian and semi-Markovian structures with recurrent cycles and terminal absorptions. Complete likelihood, model selection criteria, and scalable inference procedures based on stochastic gradient descent enable large-scale applications. Nonlinear longitudinal submodels are integrated with shared latent structures, and a dynamic prediction framework provides individualized state-transition probabilities and personalized risk assessments. The approach is validated through simulations and application to the PAQUID cohort, showing accurate parameter recovery and individualized predictions.
+Conventional joint modeling approaches generally characterize the relationship between longitudinal biomarkers and discrete event occurrences within terminal, recurring or competing risk settings, thereby offering a limited representation of complex, multi-state trajectories. We propose a general multi-state joint modeling framework that unifies longitudinal biomarker dynamics with multi-state time-to-event processes defined on arbitrary directed graphs. The proposed framework also accomodates nonlinear longitudinal submodels and scalable inference via stochastic gradient descent. This formulation encompasses both Markovian and semi-Markovian transition structures, allowing recurrent cycles and terminal absorptions to be naturally represented. The longitudinal and event processes are linked through shared latent structures within nonlinear mixed-effects models, extending classical joint modeling formulations. We derive the complete likelihood, model selection criteria, and develop scalable inference procedures based on stochastic gradient descent to enable high-dimensional and large-scale applications. In addition, we formulate a dynamic prediction framework that provides individualized state-transition probabilities and personalized risk assessments along complex event trajectories. Through simulation and application to the PAQUID cohort, we demonstrate accurate parameter recovery and individualized prediction.
 </div>
 <div id="bib-2" class="pub-expand" hidden>
 <pre>@misc{laplante2025joint,

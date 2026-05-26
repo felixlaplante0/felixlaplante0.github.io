@@ -5,6 +5,18 @@ title: "Talks & Events"
 ## Talks
 
 ::: {.pub-entry}
+**A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores**
+[*Ukrainian Mathematics Days*, June 2026]{.pub-venue}
+Poster presentation at Institut Henri Poincaré (IHP) discussing the PIT-CP framework for distribution-free conditional validity in conformal prediction.
+:::
+
+::: {.pub-entry}
+**A General Framework for Joint Multi-State Models**
+[*Journées de la Statistique* (SFDS), June 2026]{.pub-venue}
+Oral presentation at Clermont-Ferrand introducing a unified framework for jointly modeling longitudinal biomarkers and multi-state event processes on directed graphs.
+:::
+
+::: {.pub-entry}
 **Selecting the Number of Clusters in a Clustering Algorithm**
 [*Journées de la Statistique* (SFDS), June 2025]{.pub-venue}
 Oral presentation introducing a data-driven model selection criterion for choosing the number of classes in the Spectral Bridges clustering algorithm. The method leverages the scale-invariant affinity structure of the algorithm to define a connectivity-based score, avoiding cross-validation and working directly from the spectral decomposition.
@@ -22,7 +34,10 @@ Poster presenting non-asymptotic uniform confidence bands for survival estimator
 
 | Date | Event |
 |---|---|
+| June 2025 | Journées de la Statistique (SFDS) — Marseille |
 | June 2025 | Working group on Causality — MIA Paris-Saclay |
 | July 2025 | Working group on Topological Data Analysis — LaMME |
 | October 2025 | Winter School on Causality and Explainable AI |
 | March 2026 | Workshop on Uncertainty Quantification and Causality |
+| June 2026 | Journées de la Statistique (SFDS) — Clermont-Ferrand |
+| June 2026 | Ukrainian Mathematics Days — Institut Henri Poincaré |
