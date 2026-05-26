@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -40,10 +40,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4897d45d2f75ed4f519693be625836c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3e7735b7b22659e5fa437aca0bb49075.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -174,6 +174,37 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="pub-year">
+2026
+</div>
+<div class="pub-entry">
+<p>
+<strong>A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores</strong>
+</p>
+<p class="pub-authors">
+Félix Laplante
+</p>
+<p class="pub-venue">
+<em>arXiv preprint</em>, May 2026
+</p>
+<div class="pub-btns">
+<p><button class="btn btn-sm btn-outline-primary" onclick="togglePub(this, 'abs-3')">Abs</button> <a class="btn btn-sm btn-outline-danger" href="https://arxiv.org/abs/2605.25852" target="_blank">arXiv</a> <a class="btn btn-sm btn-outline-success" href="https://github.com/felixlaplante0/pitcp/tree/paper" target="_blank">Code</a> <button class="btn btn-sm btn-outline-secondary" onclick="togglePub(this, 'bib-3')">Bib</button> <a class="btn btn-sm btn-outline-dark" href="https://arxiv.org/pdf/2605.25852" target="_blank">PDF</a></p>
+</div>
+<div id="abs-3" class="pub-expand" hidden="">
+<p>While Conformal Prediction (CP) has proven to be a powerful framework for uncertainty quantification, guaranteeing conditional coverage remains a central challenge. Although finite-sample, distribution-free conditional validity is known to be impossible without structural assumptions, we show that it is fundamentally equivalent to constructing a nonconformity score whose distribution is independent of the features. This theoretical characterization motivates PIT-CP, a new post-processing correction that maps any base nonconformity score to an approximately invariant one while preserving its geometry, interpretability, and marginal coverage. This perspective is particularly appealing in practice, since it may be neither economical nor time-effective to retrain a full generative model when a strong prediction-driven model already provides highly accurate point estimates. Our procedure reduces the problem to one-dimensional conditional density estimation on the induced score, rather than full conditional density estimation on the original outcome space. We show how to estimate this transform in practice and derive bounds on the conditional coverage gap, alongside volumetric and symmetric-difference bounds. We present known minimax-optimal conditional estimation techniques while also motivating the use of modern conditional density estimators, including Mixture Density Networks and Conditional Normalizing Flows. Finally, we empirically demonstrate on a variety of datasets that our PIT-CP procedure matches or outperforms many state-of-the-art conformal prediction strategies with minimal effort and computational cost.</p>
+</div>
+<div id="bib-3" class="pub-expand" hidden="">
+<pre>@misc{laplante2026post,
+  title         = {A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores},
+  author        = {Laplante, F{\'e}lix},
+  year          = {2026},
+  eprint        = {2605.25852},
+  archiveprefix = {arXiv},
+  primaryclass  = {stat.ME},
+  url           = {https://arxiv.org/abs/2605.25852}
+}</pre>
+</div>
+</div>
+<div class="pub-year">
 2025
 </div>
 <div class="pub-entry">
@@ -190,7 +221,7 @@ Félix Laplante, Christophe Ambroise
 <p><button class="btn btn-sm btn-outline-primary" onclick="togglePub(this, 'abs-2')">Abs</button> <a class="btn btn-sm btn-outline-danger" href="https://arxiv.org/abs/2510.07128" target="_blank">arXiv</a> <a class="btn btn-sm btn-outline-success" href="https://github.com/felixlaplante0/jmstate" target="_blank">Code</a> <button class="btn btn-sm btn-outline-secondary" onclick="togglePub(this, 'bib-2')">Bib</button> <a class="btn btn-sm btn-outline-dark" href="https://arxiv.org/pdf/2510.07128" target="_blank">PDF</a></p>
 </div>
 <div id="abs-2" class="pub-expand" hidden="">
-<p>This paper proposes a unified framework for jointly modeling longitudinal biomarkers and multi-state event processes on directed graphs, accommodating both Markovian and semi-Markovian structures with recurrent cycles and terminal absorptions. Complete likelihood, model selection criteria, and scalable inference procedures based on stochastic gradient descent enable large-scale applications. Nonlinear longitudinal submodels are integrated with shared latent structures, and a dynamic prediction framework provides individualized state-transition probabilities and personalized risk assessments. The approach is validated through simulations and application to the PAQUID cohort, showing accurate parameter recovery and individualized predictions.</p>
+<p>Conventional joint modeling approaches generally characterize the relationship between longitudinal biomarkers and discrete event occurrences within terminal, recurring or competing risk settings, thereby offering a limited representation of complex, multi-state trajectories. We propose a general multi-state joint modeling framework that unifies longitudinal biomarker dynamics with multi-state time-to-event processes defined on arbitrary directed graphs. The proposed framework also accomodates nonlinear longitudinal submodels and scalable inference via stochastic gradient descent. This formulation encompasses both Markovian and semi-Markovian transition structures, allowing recurrent cycles and terminal absorptions to be naturally represented. The longitudinal and event processes are linked through shared latent structures within nonlinear mixed-effects models, extending classical joint modeling formulations. We derive the complete likelihood, model selection criteria, and develop scalable inference procedures based on stochastic gradient descent to enable high-dimensional and large-scale applications. In addition, we formulate a dynamic prediction framework that provides individualized state-transition probabilities and personalized risk assessments along complex event trajectories. Through simulation and application to the PAQUID cohort, we demonstrate accurate parameter recovery and individualized prediction.</p>
 </div>
 <div id="bib-2" class="pub-expand" hidden="">
 <pre>@misc{laplante2025joint,
