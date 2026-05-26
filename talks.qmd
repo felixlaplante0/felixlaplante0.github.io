@@ -2,7 +2,7 @@
 title: "Talks & Events"
 ---
 
-## Talks
+## Talks / Posters
 
 ::: {.pub-entry}
 **A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores**
@@ -17,15 +17,15 @@ Oral presentation at Clermont-Ferrand introducing a unified framework for jointl
 :::
 
 ::: {.pub-entry}
-**Selecting the Number of Clusters in a Clustering Algorithm**
-[*Journées de la Statistique* (SFDS), June 2025]{.pub-venue}
-Oral presentation introducing a data-driven model selection criterion for choosing the number of classes in the Spectral Bridges clustering algorithm. The method leverages the scale-invariant affinity structure of the algorithm to define a connectivity-based score, avoiding cross-validation and working directly from the spectral decomposition.
-:::
-
-::: {.pub-entry}
 **Uniform High-Probability Bands for Survival Functions**
 [*StatMathAppli*, September 2025]{.pub-venue}
 Poster presenting non-asymptotic uniform confidence bands for survival estimators derived under a joint modelling framework. The bands hold with high probability uniformly over time, providing rigorous inferential guarantees for censored survival data beyond classical pointwise confidence intervals.
+:::
+
+::: {.pub-entry}
+**Selecting the Number of Clusters in a Clustering Algorithm**
+[*Journées de la Statistique* (SFDS), June 2025]{.pub-venue}
+Oral presentation introducing a data-driven model selection criterion for choosing the number of classes in the Spectral Bridges clustering algorithm. The method leverages the scale-invariant affinity structure of the algorithm to define a connectivity-based score, avoiding cross-validation and working directly from the spectral decomposition.
 :::
 
 ---
@@ -34,10 +34,10 @@ Poster presenting non-asymptotic uniform confidence bands for survival estimator
 
 | Date | Event |
 |---|---|
-| June 2025 | Journées de la Statistique (SFDS) — Marseille |
-| June 2025 | Working group on Causality — MIA Paris-Saclay |
-| July 2025 | Working group on Topological Data Analysis — LaMME |
-| October 2025 | Winter School on Causality and Explainable AI |
-| March 2026 | Workshop on Uncertainty Quantification and Causality |
-| June 2026 | Journées de la Statistique (SFDS) — Clermont-Ferrand |
 | June 2026 | Ukrainian Mathematics Days — Institut Henri Poincaré |
+| June 2026 | Journées de la Statistique (SFDS) — Clermont-Ferrand |
+| March 2026 | Workshop on Uncertainty Quantification and Causality |
+| October 2025 | Winter School on Causality and Explainable AI |
+| July 2025 | Working group on Topological Data Analysis — LaMME |
+| June 2025 | Working group on Causality — MIA Paris-Saclay |
+| June 2025 | Journées de la Statistique (SFDS) — Marseille |
