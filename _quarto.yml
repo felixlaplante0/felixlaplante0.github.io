@@ -17,6 +17,8 @@ website:
         text: Software
       - href: talks.qmd
         text: Talks
+      - href: assets/cv.pdf
+        text: CV
       - href: contact.qmd
         text: Contact
     right:
@@ -46,3 +48,4 @@ format:
 
 resources:
   - google58feed90c4473f70.html
+  - assets/cv.pdf
