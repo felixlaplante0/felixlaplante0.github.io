@@ -7,7 +7,7 @@
   </li>
   <li class="news-item">
     <span class="news-date">April 2026</span>
-    <span class="news-content">Thrilled to co-organize a workshop with [Pierre Humbert](https://pierrehmbt.github.io) on causality.</span>
+    <span class="news-content">Thrilled to co-organize a working group with [Pierre Humbert](https://pierrehmbt.github.io) on causality.</span>
   </li>
 </ul>
 :::
