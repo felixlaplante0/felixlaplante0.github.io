@@ -23,7 +23,7 @@ website:
       - icon: envelope
         href: mailto:research.felixlaplante@gmail.com
         aria-label: Email
-      - text: ArXiv
+      - text: <i class="ai ai-arxiv"></i>
         href: https://arxiv.org/search/stat?searchtype=author&query=Laplante,+F
         aria-label: ArXiv
       - icon: mortarboard-fill
@@ -41,6 +41,8 @@ format:
     theme: cosmo
     css: styles.css
     toc: false
+    header-includes: |
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
 resources:
   - google58feed90c4473f70.html
