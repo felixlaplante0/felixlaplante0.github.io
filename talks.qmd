@@ -30,14 +30,11 @@ Oral presentation introducing a data-driven model selection criterion for choosi
 
 ---
 
-## Attended Events
+## Other Attended Events
 
 | Date | Event |
 |---|---|
-| June 2026 | Ukrainian Mathematics Days — Institut Henri Poincaré |
-| June 2026 | Journées de la Statistique (SFDS) — Clermont-Ferrand |
 | March 2026 | Workshop on Uncertainty Quantification and Causality |
 | October 2025 | Winter School on Causality and Explainable AI |
 | July 2025 | Working group on Topological Data Analysis — LaMME |
 | June 2025 | Working group on Causality — MIA Paris-Saclay |
-| June 2025 | Journées de la Statistique (SFDS) — Marseille |
