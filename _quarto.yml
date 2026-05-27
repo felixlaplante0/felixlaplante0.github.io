@@ -23,6 +23,9 @@ website:
       - icon: envelope
         href: mailto:research.felixlaplante@gmail.com
         aria-label: Email
+      - text: ArXiv
+        href: https://arxiv.org/search/stat?searchtype=author&query=Laplante,+F
+        aria-label: ArXiv
       - icon: mortarboard-fill
         href: https://scholar.google.com/citations?user=uRGOOqIAAAAJ
         aria-label: Google Scholar
