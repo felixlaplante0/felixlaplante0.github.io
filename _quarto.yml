@@ -23,7 +23,7 @@ website:
         text: Contact
     right:
       - icon: envelope
-        href: mailto:research.felixlaplante@gmail.com
+        href: mailto:felixlaplante.research@gmail.com
         aria-label: Email
       - text: <i class="ai ai-arxiv"></i>
         href: https://arxiv.org/search/stat?searchtype=author&query=Laplante,+F

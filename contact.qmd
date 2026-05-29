@@ -10,7 +10,7 @@ Université Paris-Saclay, Univ Évry\
 23 boulevard de France\
 91034 Évry-Courcouronnes, France
 
-[research.felixlaplante@gmail.com](mailto:research.felixlaplante@gmail.com)
+[felixlaplante.research@gmail.com](mailto:felixlaplante.research@gmail.com)
 
 <iframe
   src="https://www.openstreetmap.org/export/embed.html?bbox=2.4360%2C48.6220%2C2.4460%2C48.6280&layer=mapnik&marker=48.6250%2C2.4410"
