@@ -65,7 +65,7 @@ Conventional joint modeling approaches generally characterize the relationship b
 <div class="pub-entry">
 <p><strong>Spectral Bridges: Scalable Spectral Clustering Based on Vector Quantization</strong></p>
 <p class="pub-authors">Félix Laplante, Christophe Ambroise</p>
-<p class="pub-venue"><em>Computo</em>, December 2024</p>
+<p class="pub-venue"><em>Computo</em> journal paper, December 2024</p>
 <div class="pub-btns">
   <button class="btn btn-sm btn-outline-primary" onclick="togglePub(this, 'abs-1')">Abs</button>
   <a class="btn btn-sm btn-outline-danger" href="https://arxiv.org/abs/2407.07430" target="_blank">arXiv</a>
