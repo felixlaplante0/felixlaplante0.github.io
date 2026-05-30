@@ -16,7 +16,7 @@ My beloved zucchini
 [— Antoine de Saint-Exupéry]{.quote-author}
 :::
 
-I am a future PhD candidate in **causality** at Laboratoire de Mathématiques et Modélisation d'Évry (LaMME). As a graduate from Mathematics and Artificial Intelligence at Université Paris-Saclay, my interests mainly lie at the intersection of mathematical statistics, uncertainty quantification, survival analysis, and causal inference. I develop theoretical foundations and practical algorithms, with a particular taste for highly optimized `Python`.
+I am a future PhD candidate in **causality** at Laboratoire de Mathématiques et Modélisation d'Évry (LaMME). As a graduate from Mathematics and Artificial Intelligence at Université Paris-Saclay, my interests mainly lie at the intersection of optimal transport, uncertainty quantification, algorithmic fairness, and causal inference. I develop theoretical foundations and practical algorithms, with a particular taste for highly optimized `Python`.
 
 ---
 
