@@ -5,6 +5,32 @@ title: "Publications"
 <div class="pub-year">2026</div>
 
 <div class="pub-entry">
+<p><strong>Contrast-Free ICA and Causal Inference via Wasserstein Distances to the Gaussian</strong></p>
+<p class="pub-authors">Félix Laplante, Christophe Ambroise, Pierre Humbert</p>
+<p class="pub-venue"><em>arXiv preprint</em>, July 2026</p>
+<div class="pub-btns">
+  <button class="btn btn-sm btn-outline-primary" onclick="togglePub(this, 'abs-4')">Abs</button>
+  <a class="btn btn-sm btn-outline-danger" href="https://arxiv.org/abs/2607.12832" target="_blank">arXiv</a>
+  <button class="btn btn-sm btn-outline-secondary" onclick="togglePub(this, 'bib-4')">Bib</button>
+  <a class="btn btn-sm btn-outline-dark" href="https://arxiv.org/pdf/2607.12832" target="_blank">PDF</a>
+</div>
+<div id="abs-4" class="pub-expand" hidden>
+We study the squared 2-Wasserstein distance to the standard Gaussian as a measure of non-Gaussianity for linear Independent Component Analysis (ICA) and causal inference in Linear Non-Gaussian Acyclic Models (LiNGAM). A strict inequality comparing independent standardized sources with their linear combinations yields population-level identification of the ICA unmixing matrix up to signed permutation, as well as a characterization of causal orders through least-squares residuals. We introduce empirical plug-in estimators with distribution-free uniform convergence guarantees under finite-moment assumptions and develop three practical solvers: an orthogonal Picard-style ICA optimizer, an exhaustive dynamic program for causal-order search, and a greedy alternative. Experiments show competitive results for source separation and causal inference.
+</div>
+<div id="bib-4" class="pub-expand" hidden>
+<pre>@misc{laplante2026contrast,
+  title         = {Contrast-Free ICA and Causal Inference via Wasserstein Distances to the Gaussian},
+  author        = {Laplante, F{\'e}lix and Ambroise, Christophe and Humbert, Pierre},
+  year          = {2026},
+  eprint        = {2607.12832},
+  archiveprefix = {arXiv},
+  primaryclass  = {stat.ML},
+  url           = {https://arxiv.org/abs/2607.12832}
+}</pre>
+</div>
+</div>
+
+<div class="pub-entry">
 <p><strong>A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores</strong></p>
 <p class="pub-authors">Félix Laplante</p>
 <p class="pub-venue"><em>arXiv preprint</em>, May 2026</p>
@@ -16,7 +42,7 @@ title: "Publications"
   <a class="btn btn-sm btn-outline-dark" href="https://arxiv.org/pdf/2605.25852" target="_blank">PDF</a>
 </div>
 <div id="abs-3" class="pub-expand" hidden>
-While Conformal Prediction (CP) has proven to be a powerful framework for uncertainty quantification, guaranteeing conditional coverage remains a central challenge. Although finite-sample, distribution-free conditional validity is known to be impossible without structural assumptions, we show that it is fundamentally equivalent to constructing a nonconformity score whose distribution is independent of the features. This theoretical characterization motivates PIT-CP, a new post-processing correction that maps any base nonconformity score to an approximately invariant one while preserving its geometry, interpretability, and marginal coverage. This perspective is particularly appealing in practice, since it may be neither economical nor time-effective to retrain a full generative model when a strong prediction-driven model already provides highly accurate point estimates. Our procedure reduces the problem to one-dimensional conditional density estimation on the induced score, rather than full conditional density estimation on the original outcome space. We show how to estimate this transform in practice and derive bounds on the conditional coverage gap, alongside volumetric and symmetric-difference bounds. We present known minimax-optimal conditional estimation techniques while also motivating the use of modern conditional density estimators, including Mixture Density Networks and Conditional Normalizing Flows. Finally, we empirically demonstrate on various datasets that our PIT-CP procedure matches or outperforms many state-of-the-art conformal prediction strategies with minimal effort and computational cost.
+While Conformal Prediction (CP) has proven to be a powerful framework for uncertainty quantification, guaranteeing conditional coverage remains a central challenge. Although finite-sample, distribution-free conditional validity is known to be impossible without structural assumptions, we show that for i.i.d. data, it is fundamentally equivalent to constructing a nonconformity score whose distribution is independent of the features. This theoretical characterization motivates PIT-CP, a new post-processing correction that maps any base nonconformity score to an approximately invariant one while preserving its geometry, interpretability, and marginal coverage. This perspective is particularly appealing in practice, since it may be neither economical nor time-effective to retrain a full generative model when a strong prediction-driven model already provides highly accurate point estimates. Our procedure reduces the problem to one-dimensional conditional density estimation on the induced score, rather than full conditional density estimation on the original outcome space. We show how to estimate this transform in practice and derive bounds on the conditional coverage gap, alongside volumetric and symmetric-difference bounds. We present known minimax-optimal conditional estimation techniques while also motivating the use of modern conditional density estimators, including Mixture Density Networks and Conditional Normalizing Flows. Finally, we empirically demonstrate on various datasets that our PIT-CP procedure matches or outperforms many state-of-the-art conformal prediction strategies with minimal effort and computational cost.
 </div>
 <div id="bib-3" class="pub-expand" hidden>
 <pre>@misc{laplante2026post,
