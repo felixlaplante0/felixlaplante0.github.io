@@ -11,7 +11,8 @@ title: "Publications"
 <div class="pub-btns">
   <button class="btn btn-sm btn-outline-primary" onclick="togglePub(this, 'abs-4')">Abs</button>
   <a class="btn btn-sm btn-outline-danger" href="https://arxiv.org/abs/2607.12832" target="_blank">arXiv</a>
-  <button class="btn btn-sm btn-outline-success" onclick="window.open('https://github.com/felixlaplante0/otica', '_blank', 'noopener'); window.open('https://github.com/felixlaplante0/otlingam', '_blank', 'noopener');" aria-label="Open OT-ICA and OT-LiNGAM repositories">Code</button>
+  <a class="btn btn-sm btn-outline-success" href="https://github.com/felixlaplante0/otica" target="_blank">Code OT-ICA</a>
+  <a class="btn btn-sm btn-outline-success" href="https://github.com/felixlaplante0/otlingam" target="_blank">Code OT-LiNGAM</a>
   <button class="btn btn-sm btn-outline-secondary" onclick="togglePub(this, 'bib-4')">Bib</button>
   <a class="btn btn-sm btn-outline-dark" href="https://arxiv.org/pdf/2607.12832" target="_blank">PDF</a>
 </div>
