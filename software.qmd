@@ -4,8 +4,8 @@ title: "Software"
 
 | Package | Description |
 |---|---|
-| [otica](https://github.com/felixlaplante0/otica) | `Python` package for contrast-free independent component analysis using the squared 2-Wasserstein distance to the standard Gaussian. |
-| [otlingam](https://github.com/felixlaplante0/otlingam) | `Python` package for causal discovery in linear non-Gaussian models using Wasserstein non-Gaussianity. |
+| [OT-ICA](https://github.com/felixlaplante0/otica) | `Python` package for contrast-free independent component analysis using the squared 2-Wasserstein distance to the standard Gaussian. |
+| [OT-LiNGAM](https://github.com/felixlaplante0/otlingam) | `Python` package for causal discovery in linear non-Gaussian models using Wasserstein non-Gaussianity. |
 | [jmstate](https://github.com/felixlaplante0/jmstate) | `Python` package for joint multi-state models. Implements estimation and prediction methods combining longitudinal markers with multi-state survival processes. |
 | [pitcp](https://github.com/felixlaplante0/pitcp) | `Python` package implementing PIT-based correction conformal prediction, mapping a base nonconformity scores through a learned conditional CDF, producing asymptotically exact conditional coverage. |
 | [uniformbands](https://github.com/felixlaplante0/uniformbands) | `Python` package deriving asymptotic uniform confidence bands for survival functions in large probability. |
