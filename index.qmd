@@ -1,7 +1,3 @@
----
-title: "Félix Laplante"
----
-
 ::: mascot
 ![](assets/logo.svg)
 
