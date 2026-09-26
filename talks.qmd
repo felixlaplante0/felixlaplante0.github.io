@@ -1,4 +1,4 @@
-## Talks / Posters
+# Talks / Posters
 
 ::: pub
 **A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores**
@@ -32,7 +32,7 @@ Presents asymptotic uniform confidence bands for survival estimators derived und
 Introduces a data-driven model selection criterion for choosing the number of classes in the Spectral Bridges clustering algorithm. The method leverages the scale-invariant affinity structure of the algorithm to define a connectivity-based score, avoiding cross-validation and working directly from the spectral decomposition.
 :::
 
-## Service & Teaching
+# Service & Teaching
 
 | Date | Activity |
 |------|------------------------|
