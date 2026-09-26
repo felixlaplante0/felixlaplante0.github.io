@@ -128,6 +128,7 @@ document.querySelectorAll(".pub").forEach((pub) => {
     panel.hidden = true;
     const button = document.createElement("button");
     button.textContent = label;
+    button.className = "toggle-" + label.toLowerCase();
     button.onclick = () => button.classList.toggle("active", !(panel.hidden = !panel.hidden));
     pub.querySelector(".links").append(button);
   }

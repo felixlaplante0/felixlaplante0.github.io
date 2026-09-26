@@ -151,19 +151,35 @@ td:first-child {
       display: contents;
     }
 
+    // Each kind of link gets its own colour (--c) and Bootstrap icon (--icon).
     a, button {
+      --c: #{$primary};
       font-size: 0.78rem;
       padding: 0.05rem 0.65rem;
-      border: 1px solid $primary;
+      border: 1px solid var(--c);
       border-radius: 999px;
       background: none;
-      color: $primary;
+      color: var(--c);
+
+      &::before {
+        content: var(--icon);
+        font-family: "bootstrap-icons";
+        vertical-align: -0.1em;
+        margin-right: 0.3rem;
+      }
     }
 
     a:hover, button:hover, button.active {
-      background: $primary;
+      background: var(--c);
       color: #fff;
     }
+
+    a[href*="arxiv.org/abs"] { --c: #b31b1b; --icon: "\f444"; }
+    a[href*="arxiv.org/pdf"] { --c: #343a40; --icon: "\f63e"; }
+    a[href*="github.com"]    { --c: #198754; --icon: "\f3ed"; }
+    a[href*="doi.org"]       { --c: #6f42c1; --icon: "\f470"; }
+    button.toggle-abstract   { --c: #0d6efd; --icon: "\f5c8"; }
+    button.toggle-bibtex     { --c: #6c757d; --icon: "\f6b0"; }
   }
 
   .abstract, .code-copy-outer-scaffold {
