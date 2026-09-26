@@ -1,39 +1,54 @@
 ---
-title: "Talks & Events"
+title: "Talks & Activities"
 ---
 
 ## Talks / Posters
 
-::: {.pub-entry}
+::: pub
 **A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores**
-[*Ukrainian Mathematics Days*, June 2026]{.pub-venue}
-Poster presentation at Institut Henri Poincaré (IHP) discussing the PIT-CP framework for distribution-free conditional validity in conformal prediction.
+
+[Poster · *Ukrainian Mathematics Days*, Institut Henri Poincaré, June 2026]{.venue}
+
+Discusses the PIT-CP framework for distribution-free conditional validity in conformal prediction.
 :::
 
-::: {.pub-entry}
+::: pub
 **A General Framework for Joint Multi-State Models**
-[*Journées de la Statistique* (SFDS), June 2026]{.pub-venue}
-Oral presentation at Clermont-Ferrand introducing a unified framework for jointly modeling longitudinal biomarkers and multi-state event processes on directed graphs.
+
+[Talk · *Journées de la Statistique* (SFdS), Clermont-Ferrand, June 2026]{.venue}
+
+Introduces a unified framework for jointly modeling longitudinal biomarkers and multi-state event processes on directed graphs.
 :::
 
-::: {.pub-entry}
+::: pub
 **Uniform High-Probability Bands for Survival Functions**
-[*StatMathAppli*, September 2025]{.pub-venue}
-Poster presenting asymptotic uniform confidence bands for survival estimators derived under a joint modelling framework. The bands hold with high probability uniformly over time, providing rigorous inferential guarantees for censored survival data beyond classical pointwise confidence intervals.
+
+[Poster · *StatMathAppli*, Fréjus, September 2025]{.venue}
+
+Presents asymptotic uniform confidence bands for survival estimators derived under a joint modelling framework. The bands hold with high probability uniformly over time, providing rigorous inferential guarantees for censored survival data beyond classical pointwise confidence intervals.
 :::
 
-::: {.pub-entry}
+::: pub
 **Selecting the Number of Clusters in a Clustering Algorithm**
-[*Journées de la Statistique* (SFDS), June 2025]{.pub-venue}
-Oral presentation introducing a data-driven model selection criterion for choosing the number of classes in the Spectral Bridges clustering algorithm. The method leverages the scale-invariant affinity structure of the algorithm to define a connectivity-based score, avoiding cross-validation and working directly from the spectral decomposition.
+
+[Talk · *Journées de la Statistique* (SFdS), Marseille, June 2025]{.venue}
+
+Introduces a data-driven model selection criterion for choosing the number of classes in the Spectral Bridges clustering algorithm. The method leverages the scale-invariant affinity structure of the algorithm to define a connectivity-based score, avoiding cross-validation and working directly from the spectral decomposition.
 :::
 
----
+## Service & Teaching
 
-## Other Attended Events
+| Date | Activity |
+|------|------------------------|
+| October 2026 | Reviewer for *AISTATS 2027* (upcoming) |
+| September 2026 | Organizer of LLM sessions at LaMME |
+| May 2026 | Co-organizer of a Causality Working Group at LaMME with [Pierre Humbert](https://pierrehmbt.github.io) |
+| 2026–2027 | Teaching assistant (TDs), Université d'Évry, 60 hours/year expected |
+
+## Attended Events
 
 | Date | Event |
-|---|---|
+|------|------------------------|
 | March 2026 | Workshop on Uncertainty Quantification and Causality (CAUSALI-T-AI, Jussieu) |
 | October 2025 | Winter School on Causality and Explainable AI (SCAI, Jussieu) |
 | July 2025 | Working group on Topological Data Analysis (LaMME) |

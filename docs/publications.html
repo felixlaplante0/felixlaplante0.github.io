@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -40,10 +75,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-bba5ebae505b5c03f3f0d8040a416a6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-daa7d50ba027a0e97980774031507ddc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,7 +109,6 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed fullcontent quarto-light">
@@ -182,136 +216,110 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="pub-year">
-2026
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section">2026</h2>
+<div class="pub">
+<p><strong>Contrast-Free ICA and Causal Inference via Wasserstein Distances to the Gaussian</strong></p>
+<p><span class="authors"><span class="me">Félix Laplante</span>, Christophe Ambroise, Pierre Humbert</span></p>
+<p><span class="venue">Under review at <em>JMLR</em> · arXiv preprint, July 2026</span></p>
+<div class="links">
+<p><a href="https://arxiv.org/abs/2607.12832">arXiv</a> <a href="https://arxiv.org/pdf/2607.12832">PDF</a> <a href="https://github.com/felixlaplante0/otica">Code OT-ICA</a> <a href="https://github.com/felixlaplante0/otlingam">Code OT-LiNGAM</a></p>
 </div>
-<div class="pub-entry">
-<p>
-<strong>Contrast-Free ICA and Causal Inference via Wasserstein Distances to the Gaussian</strong>
-</p>
-<p class="pub-authors">
-Félix Laplante, Christophe Ambroise, Pierre Humbert
-</p>
-<p class="pub-venue">
-<em>arXiv preprint</em>, July 2026
-</p>
-<div class="pub-btns">
-<p><button class="btn btn-sm btn-outline-primary" onclick="togglePub(this, 'abs-4')">Abs</button> <a class="btn btn-sm btn-outline-danger" href="https://arxiv.org/abs/2607.12832" target="_blank">arXiv</a> <a class="btn btn-sm btn-outline-success" href="https://github.com/felixlaplante0/otica" target="_blank">Code OT-ICA</a> <a class="btn btn-sm btn-outline-success" href="https://github.com/felixlaplante0/otlingam" target="_blank">Code OT-LiNGAM</a> <button class="btn btn-sm btn-outline-secondary" onclick="togglePub(this, 'bib-4')">Bib</button> <a class="btn btn-sm btn-outline-dark" href="https://arxiv.org/pdf/2607.12832" target="_blank">PDF</a></p>
-</div>
-<div id="abs-4" class="pub-expand" hidden="">
+<div class="abstract">
 <p>We study the squared 2-Wasserstein distance to the standard Gaussian as a measure of non-Gaussianity for linear Independent Component Analysis (ICA) and causal inference in Linear Non-Gaussian Acyclic Models (LiNGAM). A strict inequality comparing independent standardized sources with their linear combinations yields population-level identification of the ICA unmixing matrix up to signed permutation, as well as a characterization of causal orders through least-squares residuals. We introduce empirical plug-in estimators with distribution-free uniform convergence guarantees under finite-moment assumptions and develop three practical solvers: an orthogonal Picard-style ICA optimizer, an exhaustive dynamic program for causal-order search, and a greedy alternative. Experiments show competitive results for source separation and causal inference.</p>
 </div>
-<div id="bib-4" class="pub-expand" hidden="">
-<pre>@misc{laplante2026contrast,
-  title         = {Contrast-Free ICA and Causal Inference via Wasserstein Distances to the Gaussian},
-  author        = {Laplante, F{\'e}lix and Ambroise, Christophe and Humbert, Pierre},
-  year          = {2026},
-  eprint        = {2607.12832},
-  archiveprefix = {arXiv},
-  primaryclass  = {stat.ML},
-  url           = {https://arxiv.org/abs/2607.12832}
-}</pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">laplante2026contrast</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>         = {Contrast-Free ICA and Causal Inference via Wasserstein Distances to the Gaussian},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>        = {Laplante, F{<span class="ch">\'</span>e}lix and Ambroise, Christophe and Humbert, Pierre},</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>          = {2026},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">eprint</span>        = {2607.12832},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">archiveprefix</span> = {arXiv},</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">primaryclass</span>  = {stat.ML},</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">url</span>           = {https://arxiv.org/abs/2607.12832}</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<div class="pub">
+<p><strong>A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores</strong></p>
+<p><span class="authors"><span class="me">Félix Laplante</span></span></p>
+<p><span class="venue">Under review at an international conference · arXiv preprint, May 2026</span></p>
+<div class="links">
+<p><a href="https://arxiv.org/abs/2605.25852">arXiv</a> <a href="https://arxiv.org/pdf/2605.25852">PDF</a> <a href="https://github.com/felixlaplante0/pitcp/tree/paper">Code</a></p>
 </div>
-<div class="pub-entry">
-<p>
-<strong>A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores</strong>
-</p>
-<p class="pub-authors">
-Félix Laplante
-</p>
-<p class="pub-venue">
-<em>arXiv preprint</em>, May 2026
-</p>
-<div class="pub-btns">
-<p><button class="btn btn-sm btn-outline-primary" onclick="togglePub(this, 'abs-3')">Abs</button> <a class="btn btn-sm btn-outline-danger" href="https://arxiv.org/abs/2605.25852" target="_blank">arXiv</a> <a class="btn btn-sm btn-outline-success" href="https://github.com/felixlaplante0/pitcp/tree/paper" target="_blank">Code</a> <button class="btn btn-sm btn-outline-secondary" onclick="togglePub(this, 'bib-3')">Bib</button> <a class="btn btn-sm btn-outline-dark" href="https://arxiv.org/pdf/2605.25852" target="_blank">PDF</a></p>
-</div>
-<div id="abs-3" class="pub-expand" hidden="">
+<div class="abstract">
 <p>While Conformal Prediction (CP) has proven to be a powerful framework for uncertainty quantification, guaranteeing conditional coverage remains a central challenge. Although finite-sample, distribution-free conditional validity is known to be impossible without structural assumptions, we show that for i.i.d. data, it is fundamentally equivalent to constructing a nonconformity score whose distribution is independent of the features. This theoretical characterization motivates PIT-CP, a new post-processing correction that maps any base nonconformity score to an approximately invariant one while preserving its geometry, interpretability, and marginal coverage. This perspective is particularly appealing in practice, since it may be neither economical nor time-effective to retrain a full generative model when a strong prediction-driven model already provides highly accurate point estimates. Our procedure reduces the problem to one-dimensional conditional density estimation on the induced score, rather than full conditional density estimation on the original outcome space. We show how to estimate this transform in practice and derive bounds on the conditional coverage gap, alongside volumetric and symmetric-difference bounds. We present known minimax-optimal conditional estimation techniques while also motivating the use of modern conditional density estimators, including Mixture Density Networks and Conditional Normalizing Flows. Finally, we empirically demonstrate on various datasets that our PIT-CP procedure matches or outperforms many state-of-the-art conformal prediction strategies with minimal effort and computational cost.</p>
 </div>
-<div id="bib-3" class="pub-expand" hidden="">
-<pre>@misc{laplante2026post,
-  title         = {A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores},
-  author        = {Laplante, F{\'e}lix},
-  year          = {2026},
-  eprint        = {2605.25852},
-  archiveprefix = {arXiv},
-  primaryclass  = {stat.ME},
-  url           = {https://arxiv.org/abs/2605.25852}
-}</pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">laplante2026post</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>         = {A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores},</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>        = {Laplante, F{<span class="ch">\'</span>e}lix},</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>          = {2026},</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">eprint</span>        = {2605.25852},</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">archiveprefix</span> = {arXiv},</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">primaryclass</span>  = {stat.ME},</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">url</span>           = {https://arxiv.org/abs/2605.25852}</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1">2025</h2>
+<div class="pub">
+<p><strong>A General Framework for Joint Multi-State Models</strong></p>
+<p><span class="authors"><span class="me">Félix Laplante</span>, Christophe Ambroise</span></p>
+<p><span class="venue">Under review at <em>Statistics and Computing</em> · arXiv preprint, October 2025</span></p>
+<div class="links">
+<p><a href="https://arxiv.org/abs/2510.07128">arXiv</a> <a href="https://arxiv.org/pdf/2510.07128">PDF</a> <a href="https://github.com/felixlaplante0/jmstate">Code</a></p>
 </div>
-<div class="pub-year">
-2025
-</div>
-<div class="pub-entry">
-<p>
-<strong>A General Framework for Joint Multi-State Models</strong>
-</p>
-<p class="pub-authors">
-Félix Laplante, Christophe Ambroise
-</p>
-<p class="pub-venue">
-<em>arXiv preprint</em>, October 2025
-</p>
-<div class="pub-btns">
-<p><button class="btn btn-sm btn-outline-primary" onclick="togglePub(this, 'abs-2')">Abs</button> <a class="btn btn-sm btn-outline-danger" href="https://arxiv.org/abs/2510.07128" target="_blank">arXiv</a> <a class="btn btn-sm btn-outline-success" href="https://github.com/felixlaplante0/jmstate" target="_blank">Code</a> <button class="btn btn-sm btn-outline-secondary" onclick="togglePub(this, 'bib-2')">Bib</button> <a class="btn btn-sm btn-outline-dark" href="https://arxiv.org/pdf/2510.07128" target="_blank">PDF</a></p>
-</div>
-<div id="abs-2" class="pub-expand" hidden="">
+<div class="abstract">
 <p>Conventional joint modeling approaches generally characterize the relationship between longitudinal biomarkers and discrete event occurrences within terminal, recurring or competing risk settings, thereby offering a limited representation of complex, multi-state trajectories. We propose a general multi-state joint modeling framework that unifies longitudinal biomarker dynamics with multi-state time-to-event processes defined on arbitrary directed graphs. The proposed framework also accomodates nonlinear longitudinal submodels and scalable inference via stochastic gradient descent. This formulation encompasses both Markovian and semi-Markovian transition structures, allowing recurrent cycles and terminal absorptions to be naturally represented. The longitudinal and event processes are linked through shared latent structures within nonlinear mixed-effects models, extending classical joint modeling formulations. We derive the complete likelihood, model selection criteria, and develop scalable inference procedures based on stochastic gradient descent to enable high-dimensional and large-scale applications. In addition, we formulate a dynamic prediction framework that provides individualized state-transition probabilities and personalized risk assessments along complex event trajectories. Through simulation and application to the PAQUID cohort, we demonstrate accurate parameter recovery and individualized prediction.</p>
 </div>
-<div id="bib-2" class="pub-expand" hidden="">
-<pre>@misc{laplante2025joint,
-  title         = {A General Framework for Joint Multi-State Models},
-  author        = {Laplante, F{\'e}lix and Ambroise, Christophe},
-  year          = {2025},
-  eprint        = {2510.07128},
-  archiveprefix = {arXiv},
-  primaryclass  = {stat.ME},
-  url           = {https://arxiv.org/abs/2510.07128}
-}</pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">laplante2025joint</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>         = {A General Framework for Joint Multi-State Models},</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>        = {Laplante, F{<span class="ch">\'</span>e}lix and Ambroise, Christophe},</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>          = {2025},</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">eprint</span>        = {2510.07128},</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">archiveprefix</span> = {arXiv},</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">primaryclass</span>  = {stat.ME},</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">url</span>           = {https://arxiv.org/abs/2510.07128}</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2">2024</h2>
+<div class="pub">
+<p><strong>Spectral Bridges: Scalable Spectral Clustering Based on Vector Quantization</strong></p>
+<p><span class="authors"><span class="me">Félix Laplante</span>, Christophe Ambroise</span></p>
+<p><span class="venue"><em>Computo</em> journal paper, December 2024</span></p>
+<div class="links">
+<p><a href="https://doi.org/10.57750/1gr8-bk61">DOI</a> <a href="https://arxiv.org/abs/2407.07430">arXiv</a> <a href="https://arxiv.org/pdf/2407.07430">PDF</a> <a href="https://github.com/felixlaplante0/published-202412-ambroise-spectral">Code</a></p>
 </div>
-<div class="pub-year">
-2024
-</div>
-<div class="pub-entry">
-<p>
-<strong>Spectral Bridges: Scalable Spectral Clustering Based on Vector Quantization</strong>
-</p>
-<p class="pub-authors">
-Félix Laplante, Christophe Ambroise
-</p>
-<p class="pub-venue">
-<em>Computo</em> journal paper, December 2024
-</p>
-<div class="pub-btns">
-<p><button class="btn btn-sm btn-outline-primary" onclick="togglePub(this, 'abs-1')">Abs</button> <a class="btn btn-sm btn-outline-danger" href="https://arxiv.org/abs/2407.07430" target="_blank">arXiv</a> <a class="btn btn-sm btn-outline-success" href="https://github.com/felixlaplante0/published-202412-ambroise-spectral" target="_blank">Code</a> <button class="btn btn-sm btn-outline-secondary" onclick="togglePub(this, 'bib-1')">Bib</button> <a class="btn btn-sm btn-outline-dark" href="https://arxiv.org/pdf/2407.07430" target="_blank">PDF</a></p>
-</div>
-<div id="abs-1" class="pub-expand" hidden="">
+<div class="abstract">
 <p>In this paper, Spectral Bridges, a novel clustering algorithm, is introduced. This algorithm builds upon the traditional k-means and spectral clustering frameworks by subdividing data into small Voronoï regions, which are subsequently merged according to a connectivity measure. Drawing inspiration from Support Vector Machine’s margin concept, a non-parametric clustering approach is proposed, building an affinity margin between each pair of Voronoï regions. This approach delineates intricate, non-convex cluster structures and is robust to hyperparameter choice. The numerical experiments underscore Spectral Bridges as a fast, robust, and versatile tool for clustering tasks spanning diverse domains. Its efficacy extends to large-scale scenarios encompassing both real-world and synthetic datasets.</p>
 </div>
-<div id="bib-1" class="pub-expand" hidden="">
-<pre>@article{laplante2024spectral,
-  title     = {Spectral Bridges: Scalable Spectral Clustering Based on Vector Quantization},
-  author    = {Laplante, F{\'e}lix and Ambroise, Christophe},
-  journal   = {Computo},
-  year      = {2024},
-  doi       = {10.57750/1gr8-bk61},
-  issn      = {2824-7795},
-  publisher = {French Statistical Society}
-}</pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">laplante2024spectral</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>     = {Spectral Bridges: Scalable Spectral Clustering Based on Vector Quantization},</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>    = {Laplante, F{<span class="ch">\'</span>e}lix and Ambroise, Christophe},</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span>   = {Computo},</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>      = {2024},</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">doi</span>       = {10.57750/1gr8-bk61},</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">issn</span>      = {2824-7795},</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span> = {French Statistical Society}</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <script>
-function togglePub(btn, id) {
-  const el = document.getElementById(id);
-  el.hidden = !el.hidden;
-  btn.classList.toggle('active', !el.hidden);
-}
+// Hide each entry's abstract and BibTeX behind toggle buttons next to its links.
+document.querySelectorAll(".pub").forEach((pub) => {
+  const panels = { Abstract: pub.querySelector(".abstract"), BibTeX: pub.querySelector(".code-copy-outer-scaffold") };
+  for (const [label, panel] of Object.entries(panels)) {
+    panel.hidden = true;
+    const button = document.createElement("button");
+    button.textContent = label;
+    button.onclick = () => button.classList.toggle("active", !(panel.hidden = !panel.hidden));
+    pub.querySelector(".links").append(button);
+  }
+});
 </script>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

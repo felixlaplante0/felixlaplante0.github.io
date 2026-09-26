@@ -1,0 +1,178 @@
+/*-- scss:defaults --*/
+
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap");
+
+// Same burgundy as the CV (Pantone 188 C).
+$primary: #76232f;
+$body-color: #2b2b2b;
+$muted: #7a7a7a;
+$rule: #e8e4e4;
+$code-color: $primary;
+
+$font-family-sans-serif: "Source Sans 3", system-ui, sans-serif;
+$headings-font-family: "EB Garamond", Georgia, serif;
+$headings-font-weight: 500;
+$link-decoration: none;
+
+$navbar-bg: #ffffff;
+$navbar-fg: #555555;
+$navbar-hl: $primary;
+
+/*-- scss:rules --*/
+
+h1.title, h2 {
+  color: $primary;
+}
+
+h2 {
+  border-bottom: 1px solid $rule;
+  padding-bottom: 0.2rem;
+  margin-top: 2.5rem;
+}
+
+.navbar {
+  border-bottom: 1px solid $rule;
+}
+
+// First table column holds short labels (dates, package names): never wrap them.
+td:first-child {
+  white-space: nowrap;
+}
+
+.navbar-brand img {
+  height: 44px !important;
+  max-height: 44px !important;
+}
+
+// Home page
+
+.mascot {
+  float: right;
+  width: 170px;
+  margin: 0 0 1rem 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: $muted;
+
+  img {
+    width: 170px;
+    height: 170px;
+    object-fit: contain;
+  }
+
+  @media (max-width: 576px) {
+    float: none;
+    margin: 0 auto 1rem;
+  }
+}
+
+.quote {
+  font-family: $headings-font-family;
+  font-size: 1.15rem;
+  border-left: 3px solid $primary;
+  margin: 2rem 0;
+  padding: 0.6rem 1.4rem;
+
+  p {
+    margin: 0;
+  }
+
+  .translation, .author {
+    display: block;
+    font-size: 0.9rem;
+    color: $muted;
+    margin-top: 0.5rem;
+  }
+}
+
+.news {
+  border: 1px solid $rule;
+  border-radius: 8px;
+  padding: 0.3rem 1.3rem 1rem;
+  margin: 2.5rem 0 1rem;
+  clear: both;
+
+  h3 {
+    color: $primary;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .date {
+    flex: 0 0 5.5rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: $muted;
+    padding-top: 0.15rem;
+  }
+}
+
+// Publications and talks
+
+.pub {
+  margin-bottom: 1.8rem;
+
+  p {
+    margin: 0 0 0.15rem;
+  }
+
+  .me {
+    font-weight: 600;
+  }
+
+  .authors {
+    color: #555;
+  }
+
+  .venue {
+    color: $muted;
+    font-size: 0.92rem;
+  }
+
+  .links {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+
+    p {
+      display: contents;
+    }
+
+    a, button {
+      font-size: 0.78rem;
+      padding: 0.05rem 0.65rem;
+      border: 1px solid $primary;
+      border-radius: 999px;
+      background: none;
+      color: $primary;
+    }
+
+    a:hover, button:hover, button.active {
+      background: $primary;
+      color: #fff;
+    }
+  }
+
+  .abstract, .code-copy-outer-scaffold {
+    margin-top: 0.7rem;
+    font-size: 0.9rem;
+  }
+
+  .abstract {
+    border-left: 3px solid $primary;
+    padding: 0.4rem 1rem;
+  }
+}
