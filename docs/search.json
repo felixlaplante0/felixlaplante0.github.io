@@ -51,28 +51,14 @@
   {
     "objectID": "talks.html",
     "href": "talks.html",
-    "title": "Talks & Activities",
+    "title": "Talks / Posters",
     "section": "",
     "text": "A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores\nPoster · Ukrainian Mathematics Days, Institut Henri Poincaré, June 2026\nDiscusses the PIT-CP framework for distribution-free conditional validity in conformal prediction.\n\n\nA General Framework for Joint Multi-State Models\nTalk · Journées de la Statistique (SFdS), Clermont-Ferrand, June 2026\nIntroduces a unified framework for jointly modeling longitudinal biomarkers and multi-state event processes on directed graphs.\n\n\nUniform High-Probability Bands for Survival Functions\nPoster · StatMathAppli, Fréjus, September 2025\nPresents asymptotic uniform confidence bands for survival estimators derived under a joint modelling framework. The bands hold with high probability uniformly over time, providing rigorous inferential guarantees for censored survival data beyond classical pointwise confidence intervals.\n\n\nSelecting the Number of Clusters in a Clustering Algorithm\nTalk · Journées de la Statistique (SFdS), Marseille, June 2025\nIntroduces a data-driven model selection criterion for choosing the number of classes in the Spectral Bridges clustering algorithm. The method leverages the scale-invariant affinity structure of the algorithm to define a connectivity-based score, avoiding cross-validation and working directly from the spectral decomposition."
-  },
-  {
-    "objectID": "talks.html#talks-posters",
-    "href": "talks.html#talks-posters",
-    "title": "Talks & Activities",
-    "section": "",
-    "text": "A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores\nPoster · Ukrainian Mathematics Days, Institut Henri Poincaré, June 2026\nDiscusses the PIT-CP framework for distribution-free conditional validity in conformal prediction.\n\n\nA General Framework for Joint Multi-State Models\nTalk · Journées de la Statistique (SFdS), Clermont-Ferrand, June 2026\nIntroduces a unified framework for jointly modeling longitudinal biomarkers and multi-state event processes on directed graphs.\n\n\nUniform High-Probability Bands for Survival Functions\nPoster · StatMathAppli, Fréjus, September 2025\nPresents asymptotic uniform confidence bands for survival estimators derived under a joint modelling framework. The bands hold with high probability uniformly over time, providing rigorous inferential guarantees for censored survival data beyond classical pointwise confidence intervals.\n\n\nSelecting the Number of Clusters in a Clustering Algorithm\nTalk · Journées de la Statistique (SFdS), Marseille, June 2025\nIntroduces a data-driven model selection criterion for choosing the number of classes in the Spectral Bridges clustering algorithm. The method leverages the scale-invariant affinity structure of the algorithm to define a connectivity-based score, avoiding cross-validation and working directly from the spectral decomposition."
-  },
-  {
-    "objectID": "talks.html#service-teaching",
-    "href": "talks.html#service-teaching",
-    "title": "Talks & Activities",
-    "section": "Service & Teaching",
-    "text": "Service & Teaching\n\n\n\nDate\nActivity\n\n\n\n\nOctober 2026\nReviewer for AISTATS 2027 (upcoming)\n\n\nSeptember 2026\nOrganizer of LLM sessions at LaMME\n\n\nMay 2026\nCo-organizer of a Causality Working Group at LaMME with Pierre Humbert\n\n\n2026–2027\nTeaching assistant (TDs), Université d’Évry, 60 hours/year expected"
   },
   {
     "objectID": "talks.html#attended-events",
     "href": "talks.html#attended-events",
-    "title": "Talks & Activities",
+    "title": "Talks / Posters",
     "section": "Attended Events",
     "text": "Attended Events\n\n\n\n\n\n\n\nDate\nEvent\n\n\n\n\nMarch 2026\nWorkshop on Uncertainty Quantification and Causality (CAUSALI-T-AI, Jussieu)\n\n\nOctober 2025\nWinter School on Causality and Explainable AI (SCAI, Jussieu)\n\n\nJuly 2025\nWorking group on Topological Data Analysis (LaMME)\n\n\nJune 2025\nWorking group on Causality (MIA Paris-Saclay)"
   }
