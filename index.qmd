@@ -15,7 +15,7 @@ My beloved zucchini
 [— Antoine de Saint-Exupéry]{.author}
 :::
 
-I am an incoming PhD student in **causality** at the Laboratoire de Mathématiques et Modélisation d'Évry (LaMME), Université Paris-Saclay, starting in October 2026 under the supervision of Christophe Ambroise, Gilles Blanchard and [Pierre Humbert](https://pierrehmbt.github.io). I graduated first of my Master in Mathematics and Artificial Intelligence at Université Paris-Saclay. My interests lie at the intersection of causal discovery, optimal transport, conformal prediction, statistical fairness and differential privacy. I develop theoretical foundations and practical algorithms, with a particular taste for highly optimized `Python`.
+I am a PhD student in **causality** at the Laboratoire de Mathématiques et Modélisation d'Évry (LaMME), Université Paris-Saclay, starting in October 2026 under the supervision of [Christophe Ambroise](https://ambroise.cloud), [Gilles Blanchard](https://www.imo.universite-paris-saclay.fr/~blanchard/) and [Pierre Humbert](https://pierrehmbt.github.io). I graduated first of my Master in Mathematics and Artificial Intelligence at Université Paris-Saclay. My interests lie at the intersection of causal discovery, optimal transport, conformal prediction, statistical fairness and differential privacy. I develop theoretical foundations and practical algorithms, with a particular taste for highly optimized `Python`.
 
 Beyond my research, I try to stay grounded through more tangible activities. I travel whenever possible, spend time in the humbling presence of the Alps, play the piano regularly, and enjoy gardening.
 

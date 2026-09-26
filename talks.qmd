@@ -41,7 +41,7 @@ Introduces a data-driven model selection criterion for choosing the number of cl
 | Date | Activity |
 |------|------------------------|
 | October 2026 | Reviewer for *AISTATS 2027* (upcoming) |
-| September 2026 | Organizer of LLM sessions at LaMME |
+| September 2026 | Organizer of [LLM sessions](https://atelier-llm.pages.dev) at LaMME |
 | May 2026 | Co-organizer of a Causality Working Group at LaMME with [Pierre Humbert](https://pierrehmbt.github.io) |
 | 2026–2027 | Teaching assistant (TDs), Université d'Évry, 60 hours/year expected |
 

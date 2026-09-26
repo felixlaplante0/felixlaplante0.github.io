@@ -7,7 +7,7 @@ title: "Publications"
 ::: pub
 **Contrast-Free ICA and Causal Inference via Wasserstein Distances to the Gaussian**
 
-[[Félix Laplante]{.me}, Christophe Ambroise, Pierre Humbert]{.authors}
+[[Félix Laplante]{.me}, [Christophe Ambroise](https://ambroise.cloud), [Pierre Humbert](https://pierrehmbt.github.io)]{.authors}
 
 [Under review at *JMLR* · arXiv preprint, July 2026]{.venue}
 
@@ -65,7 +65,7 @@ While Conformal Prediction (CP) has proven to be a powerful framework for uncert
 ::: pub
 **A General Framework for Joint Multi-State Models**
 
-[[Félix Laplante]{.me}, Christophe Ambroise]{.authors}
+[[Félix Laplante]{.me}, [Christophe Ambroise](https://ambroise.cloud)]{.authors}
 
 [Under review at *Statistics and Computing* · arXiv preprint, October 2025]{.venue}
 
@@ -95,7 +95,7 @@ Conventional joint modeling approaches generally characterize the relationship b
 ::: pub
 **Spectral Bridges: Scalable Spectral Clustering Based on Vector Quantization**
 
-[[Félix Laplante]{.me}, Christophe Ambroise]{.authors}
+[[Félix Laplante]{.me}, [Christophe Ambroise](https://ambroise.cloud)]{.authors}
 
 [*Computo* journal paper, December 2024]{.venue}
 
