@@ -4,7 +4,7 @@ project:
 
 website:
   title: "Félix Laplante"
-  site-url: https://felixlaplante0.github.io/
+  site-url: https://felixlaplante.com/
   favicon: assets/logo.svg
   navbar:
     logo: assets/logo.svg
@@ -46,5 +46,6 @@ format:
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
 resources:
+  - CNAME
   - google58feed90c4473f70.html
   - assets/cv.pdf
