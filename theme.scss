@@ -21,7 +21,7 @@ $navbar-hl: $primary;
 /*-- scss:rules --*/
 
 h1.title, h2 {
-  color: $primary;
+  color: #000;
   letter-spacing: -0.02em;
 }
 
@@ -95,7 +95,7 @@ td:first-child {
   clear: both;
 
   h3 {
-    color: $primary;
+    color: #000;
   }
 
   ul {
