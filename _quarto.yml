@@ -1,6 +1,5 @@
 project:
   type: website
-  output-dir: docs
 
 website:
   title: "Félix Laplante"
@@ -42,10 +41,10 @@ format:
   html:
     theme: [cosmo, theme.scss]
     toc: false
+    canonical-url: true
     header-includes: |
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
 resources:
-  - CNAME
   - google58feed90c4473f70.html
   - assets/cv.pdf
