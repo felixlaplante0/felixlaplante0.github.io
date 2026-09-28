@@ -120,6 +120,13 @@
   });
   zzz.append(...zs);
   svg.append(zzz);
+
+  // Sweat drops for the exhausted state, spraying off both sides of the head.
+  const sweat = el("g", { fill: "#3fa9f5", stroke: "#074e2d", "stroke-width": 5, "stroke-linejoin": "round" });
+  const drops = [0, 1, 2, 3, 4, 5].map(() =>
+    el("path", { d: "M 0 -22 C 8 -8 13 0 13 8 A 13 13 0 0 1 -13 8 C -13 0 -8 -8 0 -22 Z", opacity: 0 }));
+  sweat.append(...drops);
+  svg.append(sweat);
   svg.style.overflow = "visible";
 
   img.replaceWith(svg);
@@ -139,7 +146,7 @@
   const leafSway = gsap.fromTo(leaf, { rotation: -5 },
     { rotation: 5, duration: 1.7, repeat: -1, yoyo: true, ease: "sine.inOut" });
 
-  let state = "idle"; // idle | happy | sleep | waking
+  let state = "idle"; // idle | happy | tired | sleep | waking
 
   // Idle: breathing and a slight arm sway.
   const idle = gsap.timeline({ repeat: -1, yoyo: true, defaults: { ease: "sine.inOut", duration: 1.8 } })
@@ -158,7 +165,7 @@
   gsap.delayedCall(1.5, blink);
 
   const follow = (e) => {
-    if (state === "sleep") return;
+    if (state === "sleep" || state === "tired") return;
     const ctm = svg.getScreenCTM();
     if (!ctm) return;
     const cx = (265 * ctm.a) + ctm.e;
@@ -171,8 +178,29 @@
   };
 
   let happyTl;
+  // A new jump may only start once the previous one has landed (the second
+  // hop touches down at LANDED). A click during the last 40% of the hops
+  // is queued and fires on touchdown; earlier clicks are ignored.
+  const LANDED = 0.78;
+  const QUEUE_FROM = LANDED * 0.6;
+  let queued = false;
+  let wearingOut = false; // the current jump ends in the exhausted state
+  const canJump = () => state === "idle" || (state === "happy" && !wearingOut && happyTl.time() >= LANDED);
+  const queueJump = () => { if (state === "happy" && !wearingOut && happyTl.time() >= QUEUE_FROM) queued = true; };
+  // Three jumps within three seconds wear the mascot out.
+  const jumps = [];
+  const TIRED_JUMPS = 3;
+  const TIRED_WINDOW = 3000;
   const happy = () => {
+    const now = performance.now();
+    jumps.push(now);
+    while (now - jumps[0] > TIRED_WINDOW) jumps.shift();
+    const worn = jumps.length >= TIRED_JUMPS;
+    if (worn) jumps.length = 0;
+
     state = "happy";
+    queued = false;
+    wearingOut = worn;
     happyTl?.kill();
     idle.pause();
     const hop = (t, h, up, down) => {
@@ -188,15 +216,62 @@
         .to(leafJump, { rotation: -4, duration: down, ease: "power1.in" }, t + up);
     };
     // Arms swing back and forth (foreshortened toward/away from the viewer).
-    happyTl = gsap.timeline({ onComplete: () => { state = "idle"; idle.resume(); } });
+    happyTl = gsap.timeline({ onComplete: worn ? tired : () => { state = "idle"; idle.resume(); } });
     hop(0, 60, 0.22, 0.2);
     hop(0.42, 35, 0.18, 0.18);
     happyTl
       .to(root, { scaleY: 1, scaleX: 1, duration: 0.25, ease: "back.out(3)" }, 0.78)
       .to(leafJump, { rotation: 0, duration: 0.6, ease: "elastic.out(1, 0.35)" }, 0.78)
-      .to(armL, { scaleX: 0.82, skewY: 2, duration: 0.16, repeat: 5, yoyo: true, ease: "sine.inOut" }, 0)
-      .to(armR, { scaleX: 0.82, skewY: -2, duration: 0.16, repeat: 5, yoyo: true, ease: "sine.inOut" }, 0.16)
+      .fromTo(armL, { scaleX: 1, skewY: 0 }, { scaleX: 0.82, skewY: 2, duration: 0.16, repeat: 5, yoyo: true, ease: "sine.inOut" }, 0)
+      .fromTo(armR, { scaleX: 1, skewY: 0 }, { scaleX: 0.82, skewY: -2, duration: 0.16, repeat: 5, yoyo: true, ease: "sine.inOut" }, 0.16)
       .to(arms, { rotation: 0, duration: 0.2 }, 0);
+    if (!worn) happyTl.add(() => { if (queued) happy(); }, LANDED);
+  };
+
+  // Exhausted: slumps, droopy eyes, arms dangling, panting and sweating,
+  // then pulls itself back together.
+  const sweatTl = gsap.timeline({ paused: true, repeat: -1 });
+  drops.forEach((drop, i) => {
+    const left = i % 2 === 0;
+    const x0 = left ? 222 : 352;
+    sweatTl.fromTo(drop,
+      { x: x0, y: 262, rotation: left ? -35 : 35, scale: 0.8, opacity: 0, transformOrigin: "50% 50%" },
+      { x: x0 + (left ? -120 : 120), y: 360, rotation: left ? -75 : 75, scale: 1.55, duration: 1, ease: "power1.in",
+        keyframes: { opacity: [0, 1, 1, 0] } }, i * 0.3);
+  });
+  const tired = () => {
+    state = "tired";
+    gsap.to(pupils, { x: 0, y: 5, duration: 0.3 });
+    gsap.to(leafSway, { timeScale: 0.5, duration: 0.6 });
+    sweatTl.restart();
+    const pant = { scaleY: 1.035, scaleX: 0.985, duration: 0.24, repeat: 11, yoyo: true, ease: "sine.inOut" };
+    const tl = gsap.timeline({ onComplete: recover });
+    tl.to([eyeL, eyeR], { scaleY: 0.45, duration: 0.3, ease: "power2.out" }, 0)
+      .to([upper, ...arms], { y: 22, duration: 0.4, ease: "power2.out" }, 0)
+      .to(root, { scaleY: 1, scaleX: 1, duration: 0.3 }, 0)
+      .to(armL, { rotation: -14, duration: 0.5, ease: "power2.out" }, 0)
+      .to(armR, { rotation: 14, duration: 0.5, ease: "power2.out" }, 0)
+      .to(legL, { rotation: 10, duration: 0.4, ease: "power2.out" }, 0)
+      .to(legR, { rotation: -10, duration: 0.4, ease: "power2.out" }, 0)
+      .to(leafJump, { rotation: 0, duration: 0.5 }, 0)
+      .to(shadow, { scaleX: 1.06, opacity: 0.2, duration: 0.4 }, 0)
+      .to(upper, pant, 0.4);
+    // Keep the shoulders attached while the body stretches about (280, 850).
+    const { scaleX, scaleY, ...beat } = pant;
+    const shoulder = (arm, sx, sy) =>
+      tl.to(arm, { x: (sx - 280) * (scaleX - 1), y: 22 + (sy - 850) * (scaleY - 1), ...beat }, 0.4);
+    shoulder(armL, 118, 515);
+    shoulder(armR, 410, 510);
+  };
+  const recover = () => {
+    sweatTl.pause();
+    gsap.to(drops, { opacity: 0, duration: 0.2 });
+    gsap.to(leafSway, { timeScale: 1, duration: 0.5 });
+    gsap.to(pupils, { y: 0, duration: 0.3 });
+    gsap.timeline({ onComplete: () => { state = "idle"; idle.restart(); nap(); } })
+      .to([upper, ...arms, ...legs], { y: 0, rotation: 0, scaleY: 1, scaleX: 1, duration: 0.45, ease: "back.out(2)" }, 0)
+      .to(shadow, { scale: 1, opacity: 0.18, duration: 0.45 }, 0)
+      .to([eyeL, eyeR], { scaleY: 1, duration: 0.25 }, 0.1);
   };
 
   let sleepTl;
@@ -246,7 +321,8 @@
   svg.addEventListener("click", () => {
     nap();
     if (state === "sleep") wake();
-    else if (state === "idle" || state === "happy") happy();
+    else if (canJump()) happy();
+    else queueJump();
   });
   svg.style.cursor = "pointer";
   nap();
