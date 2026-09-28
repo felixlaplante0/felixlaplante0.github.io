@@ -38,13 +38,13 @@
 
   // Each part (body, leaf, arms, feet) has its own outline in the SVG
   // (#outline-<part>); move it into the part's group so they animate together.
-  const limbs = {
+  const parts = {
+    leaf: range(52, 56),
     legR: [$("path26"), ...range(57, 59)],
     armR: range(60, 63),
     legL: range(64, 66),
     armL: range(67, 68),
   };
-  const parts = { ...limbs, leaf: range(52, 56) };
   const silhouette = $("path2");
   const defs = el("defs");
   svg.prepend(defs);
@@ -104,8 +104,7 @@
   // The left foot is cut flat along the body, so it sits behind the body with
   // a hidden extension; turning it then never opens a gap at the joint.
   legL.children[0].after(el("ellipse", { cx: 186, cy: 818, rx: 24, ry: 22, fill: "#55c775" }));
-  const limbGroups = [legR, armR, legL, armL];
-  const upper = wrap([...svg.children].filter((n) => n !== defs && !limbGroups.includes(n)));
+  const upper = wrap([...svg.children].filter((n) => n !== defs && ![legR, armR, legL, armL].includes(n)));
   const root = wrap([legL, upper, legR, armR, armL]);
   const shadow = el("ellipse", { cx: 280, cy: 912, rx: 215, ry: 20, fill: "#074e2d", opacity: 0.18 });
   root.before(shadow);
@@ -140,6 +139,8 @@
   const leafSway = gsap.fromTo(leaf, { rotation: -5 },
     { rotation: 5, duration: 1.7, repeat: -1, yoyo: true, ease: "sine.inOut" });
 
+  let state = "idle"; // idle | happy | sleep | waking
+
   // Idle: breathing and a slight arm sway.
   const idle = gsap.timeline({ repeat: -1, yoyo: true, defaults: { ease: "sine.inOut", duration: 1.8 } })
     .to(upper, { scaleY: 1.012, scaleX: 0.994 }, 0)
@@ -156,8 +157,6 @@
   };
   gsap.delayedCall(1.5, blink);
 
-  let state = "idle";
-  const look = { x: 0, y: 0 };
   const follow = (e) => {
     if (state === "sleep") return;
     const ctm = svg.getScreenCTM();
@@ -168,9 +167,7 @@
     const dy = e.clientY - cy;
     const dist = Math.hypot(dx, dy) || 1;
     const k = Math.min(1, dist / 200);
-    look.x = (dx / dist) * k * 10;
-    look.y = (dy / dist) * k * 10;
-    gsap.to(pupils, { x: look.x, y: look.y, duration: 0.25, ease: "power2.out", overwrite: "auto" });
+    gsap.to(pupils, { x: (dx / dist) * k * 10, y: (dy / dist) * k * 10, duration: 0.25, ease: "power2.out", overwrite: "auto" });
   };
 
   let happyTl;
@@ -206,7 +203,7 @@
   const zTl = gsap.timeline({ paused: true, repeat: -1 });
   zs.forEach((z, i) => {
     zTl.fromTo(z, { x: 0, y: 0, opacity: 0, scale: 0.6, svgOrigin: "450 310" },
-      { x: 60, y: -170, opacity: 1, scale: 1.2, duration: 2.4, ease: "sine.out",
+      { x: 60, y: -170, scale: 1.2, duration: 2.4, ease: "sine.out",
         keyframes: { opacity: [0, 1, 1, 0] } }, i * 0.8);
   });
   const sleep = () => {
@@ -215,7 +212,7 @@
     idle.pause();
     gsap.to(pupils, { x: 0, y: 0, duration: 0.4 });
     gsap.to(leafSway, { timeScale: 0.4, duration: 1 });
-    // Sits down: the body sinks while the feet slide out; limbs keep their shape.
+    // Sits down: everything sinks and the feet splay outward around the joints.
     sleepTl = gsap.timeline()
       .to([eyeL, eyeR], { scaleY: 0.08, duration: 0.8, ease: "power2.inOut" }, 0)
       .to(arms, { rotation: 0, duration: 0.5 }, 0)
@@ -238,6 +235,7 @@
       .to(shadow, { scale: 1, opacity: 0.18, duration: 0.45 }, 0)
       .to([eyeL, eyeR], { scaleY: 1, duration: 0.25 }, 0.15);
   };
+
   let timer;
   const SLEEP_AFTER = 6000;
   const nap = () => { clearTimeout(timer); timer = setTimeout(sleep, SLEEP_AFTER); };
