@@ -1,5 +1,6 @@
 ---
 title: "Félix Laplante"
+include-after-body: _mascot.html
 ---
 
 ::: mascot

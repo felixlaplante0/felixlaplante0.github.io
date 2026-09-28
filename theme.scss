@@ -62,6 +62,14 @@ td:first-child {
     object-fit: contain;
   }
 
+  .mascot-svg {
+    display: block;
+    width: 170px;
+    height: 170px;
+    margin: 0 auto;
+    touch-action: manipulation;
+  }
+
   @media (max-width: 576px) {
     float: none;
     margin: 0 auto 1rem;
