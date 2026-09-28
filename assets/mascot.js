@@ -101,9 +101,12 @@
   const { armL, armR, legL, legR, leaf } = groups;
   // Jumps move an outer wrapper so the sway never has to stop (no snapping).
   const leafJump = wrap([leaf]);
+  // The left foot is cut flat along the body, so it sits behind the body with
+  // a hidden extension; turning it then never opens a gap at the joint.
+  legL.children[0].after(el("ellipse", { cx: 186, cy: 818, rx: 24, ry: 22, fill: "#55c775" }));
   const limbGroups = [legR, armR, legL, armL];
   const upper = wrap([...svg.children].filter((n) => n !== defs && !limbGroups.includes(n)));
-  const root = wrap([upper, ...limbGroups]);
+  const root = wrap([legL, upper, legR, armR, armL]);
   const shadow = el("ellipse", { cx: 280, cy: 912, rx: 215, ry: 20, fill: "#074e2d", opacity: 0.18 });
   root.before(shadow);
   const arms = [armL, armR];
