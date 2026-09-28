@@ -112,7 +112,7 @@
   root.before(shadow);
   const arms = [armL, armR];
   const legs = [legL, legR];
-  const pupils = [glintL, glintR];
+  const eyes = [eyeL, eyeR];
 
   const zzz = el("g", { fill: "#074e2d", "font-family": "sans-serif", "font-weight": "700" });
   const zs = [0, 1, 2].map(() => {
@@ -125,7 +125,7 @@
 
   // Sweat drops for the exhausted state, spraying off both sides of the head.
   const sweat = el("g", { fill: "#3fa9f5", stroke: "#074e2d", "stroke-width": 5, "stroke-linejoin": "round" });
-  const drops = [0, 1, 2, 3, 4, 5].map(() =>
+  const drops = Array.from({ length: 6 }, () =>
     el("path", { d: "M 0 -22 C 8 -8 13 0 13 8 A 13 13 0 0 1 -13 8 C -13 0 -8 -8 0 -22 Z", opacity: 0 }));
   sweat.append(...drops);
   svg.append(sweat);
@@ -159,13 +159,21 @@
   const blink = () => {
     if (state === "idle") {
       gsap.timeline()
-        .to([eyeL, eyeR], { scaleY: 0.1, duration: 0.07, ease: "power1.in" })
-        .to([eyeL, eyeR], { scaleY: 1, duration: 0.12, ease: "power1.out" });
+        .to(eyes, { scaleY: 0.1, duration: 0.07, ease: "power1.in" })
+        .to(eyes, { scaleY: 1, duration: 0.12, ease: "power1.out" });
     }
     gsap.delayedCall(1.5 + Math.random() * 2.5, blink);
   };
   gsap.delayedCall(1.5, blink);
 
+  // Each glint's neutral spot and how far it may go right (see follow()):
+  // the right-hand iris has more room on that side.
+  const gaze = [
+    { glint: glintL, rest: { x: -2, y: 2 }, right: 1 },
+    { glint: glintR, rest: { x: -1, y: 2 }, right: 5 },
+  ];
+  const toRest = (vars) => gaze.forEach(({ glint, rest }) => gsap.to(glint, { ...rest, ...vars }));
+  gaze.forEach(({ glint, rest }) => gsap.set(glint, rest));
   const follow = (e) => {
     if (state === "sleep" || state === "tired") return;
     const ctm = svg.getScreenCTM();
@@ -174,9 +182,19 @@
     const cy = (462 * ctm.d) + ctm.f;
     const dx = e.clientX - cx;
     const dy = e.clientY - cy;
-    const dist = Math.hypot(dx, dy) || 1;
-    const k = Math.min(1, dist / 200);
-    gsap.to(pupils, { x: (dx / dist) * k * 10, y: (dy / dist) * k * 10, duration: 0.25, ease: "power2.out", overwrite: "auto" });
+    // The glints travel inside a tall ellipse, like the irises. They are
+    // drawn high and to the right, so the ellipse is centred a little down
+    // and to the left of them, with little reach up or right. Inside it the
+    // axes are independent (sweeping sideways never moves them up or down);
+    // at its edge they are pulled back onto it.
+    let qx = dx / 250;
+    let qy = dy / 250;
+    const r = Math.hypot(qx, qy);
+    if (r > 1) { qx /= r; qy /= r; }
+    for (const { glint, rest, right } of gaze) {
+      gsap.to(glint, { x: rest.x + qx * (qx > 0 ? right : 6), y: rest.y + qy * (qy < 0 ? 1 : 8.5),
+        duration: 0.25, ease: "power2.out", overwrite: "auto" });
+    }
   };
 
   let happyTl;
@@ -187,8 +205,13 @@
   const QUEUE_FROM = LANDED * 0.6;
   let queued = false;
   let wearingOut = false; // the current jump ends in the exhausted state
-  const canJump = () => state === "idle" || (state === "happy" && !wearingOut && happyTl.time() >= LANDED);
-  const queueJump = () => { if (state === "happy" && !wearingOut && happyTl.time() >= QUEUE_FROM) queued = true; };
+  const press = () => {
+    if (state === "idle") return happy();
+    if (state !== "happy" || wearingOut) return;
+    const t = happyTl.time();
+    if (t >= LANDED) happy();
+    else if (t >= QUEUE_FROM) queued = true;
+  };
   // Three jumps within three seconds wear the mascot out.
   const jumps = [];
   const TIRED_JUMPS = 3;
@@ -222,8 +245,8 @@
     hop(0, 60, 0.22, 0.2);
     hop(0.42, 35, 0.18, 0.18);
     happyTl
-      .to(root, { scaleY: 1, scaleX: 1, duration: 0.25, ease: "back.out(3)" }, 0.78)
-      .to(leafJump, { rotation: 0, duration: 0.6, ease: "elastic.out(1, 0.35)" }, 0.78)
+      .to(root, { scaleY: 1, scaleX: 1, duration: 0.25, ease: "back.out(3)" }, LANDED)
+      .to(leafJump, { rotation: 0, duration: 0.6, ease: "elastic.out(1, 0.35)" }, LANDED)
       .fromTo(armL, { scaleX: 1, skewY: 0 }, { scaleX: 0.82, skewY: 2, duration: 0.16, repeat: 5, yoyo: true, ease: "sine.inOut" }, 0)
       .fromTo(armR, { scaleX: 1, skewY: 0 }, { scaleX: 0.82, skewY: -2, duration: 0.16, repeat: 5, yoyo: true, ease: "sine.inOut" }, 0.16)
       .to(arms, { rotation: 0, duration: 0.2 }, 0);
@@ -243,12 +266,12 @@
   });
   const tired = () => {
     state = "tired";
-    gsap.to(pupils, { x: 0, y: 5, duration: 0.3 });
+    toRest({ y: 6, duration: 0.3 });
     gsap.to(leafSway, { timeScale: 0.5, duration: 0.6 });
     sweatTl.restart();
     const pant = { scaleY: 1.035, scaleX: 0.985, duration: 0.24, repeat: 11, yoyo: true, ease: "sine.inOut" };
     const tl = gsap.timeline({ onComplete: recover });
-    tl.to([eyeL, eyeR], { scaleY: 0.45, duration: 0.3, ease: "power2.out" }, 0)
+    tl.to(eyes, { scaleY: 0.45, duration: 0.3, ease: "power2.out" }, 0)
       .to([upper, ...arms], { y: 22, duration: 0.4, ease: "power2.out" }, 0)
       .to(root, { scaleY: 1, scaleX: 1, duration: 0.3 }, 0)
       .to(armL, { rotation: -14, duration: 0.5, ease: "power2.out" }, 0)
@@ -269,12 +292,14 @@
     sweatTl.pause();
     gsap.to(drops, { opacity: 0, duration: 0.2 });
     gsap.to(leafSway, { timeScale: 1, duration: 0.5 });
-    gsap.to(pupils, { y: 0, duration: 0.3 });
-    gsap.timeline({ onComplete: () => { state = "idle"; idle.restart(); nap(); } })
-      .to([upper, ...arms, ...legs], { y: 0, rotation: 0, scaleY: 1, scaleX: 1, duration: 0.45, ease: "back.out(2)" }, 0)
-      .to(shadow, { scale: 1, opacity: 0.18, duration: 0.45 }, 0)
-      .to([eyeL, eyeR], { scaleY: 1, duration: 0.25 }, 0.1);
+    toRest({ duration: 0.3 });
+    standUp();
   };
+  // Back to the idle pose (after being tired or asleep).
+  const standUp = () => gsap.timeline({ onComplete: () => { state = "idle"; idle.restart(); nap(); } })
+    .to([upper, ...arms, ...legs], { x: 0, y: 0, rotation: 0, scaleY: 1, scaleX: 1, duration: 0.45, ease: "back.out(2)" }, 0)
+    .to(shadow, { scale: 1, opacity: 0.18, duration: 0.45 }, 0)
+    .to(eyes, { scaleY: 1, duration: 0.25 }, 0.15);
 
   let sleepTl;
   const zTl = gsap.timeline({ paused: true, repeat: -1 });
@@ -287,11 +312,11 @@
     if (state !== "idle") return;
     state = "sleep";
     idle.pause();
-    gsap.to(pupils, { x: 0, y: 0, duration: 0.4 });
+    toRest({ duration: 0.4 });
     gsap.to(leafSway, { timeScale: 0.4, duration: 1 });
     // Sits down: everything sinks and the feet splay outward around the joints.
     sleepTl = gsap.timeline()
-      .to([eyeL, eyeR], { scaleY: 0.08, duration: 0.8, ease: "power2.inOut" }, 0)
+      .to(eyes, { scaleY: 0.08, duration: 0.8, ease: "power2.inOut" }, 0)
       .to(arms, { rotation: 0, duration: 0.5 }, 0)
       .to([upper, ...arms, ...legs], { y: 45, duration: 0.9, ease: "power3.in" }, 0.3)
       .to(shadow, { scaleX: 1.12, opacity: 0.22, duration: 0.9, ease: "power3.in" }, 0.3)
@@ -307,10 +332,7 @@
     zTl.pause();
     gsap.to(zs, { opacity: 0, duration: 0.2 });
     gsap.to(leafSway, { timeScale: 1, duration: 0.5 });
-    gsap.timeline({ onComplete: () => { state = "idle"; idle.restart(); } })
-      .to([upper, ...arms, ...legs], { x: 0, y: 0, rotation: 0, scaleY: 1, scaleX: 1, duration: 0.45, ease: "back.out(2)" }, 0)
-      .to(shadow, { scale: 1, opacity: 0.18, duration: 0.45 }, 0)
-      .to([eyeL, eyeR], { scaleY: 1, duration: 0.25 }, 0.15);
+    standUp();
   };
 
   let timer;
@@ -323,8 +345,7 @@
   svg.addEventListener("click", () => {
     nap();
     if (state === "sleep") wake();
-    else if (canJump()) happy();
-    else queueJump();
+    else press();
   });
   svg.style.cursor = "pointer";
   nap();
