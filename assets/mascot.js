@@ -52,12 +52,20 @@
 
   // Part outlines were hidden by the body where they overlap it; now that
   // parts are drawn above the body, mask that overlap out explicitly.
-  const offBody = el("mask", { id: "zm-off-body", ...box });
-  const inside = silhouette.cloneNode();
-  inside.removeAttribute("id");
-  inside.setAttribute("fill", "#000");
-  offBody.append(el("rect", { x: -100, y: -100, width: 800, height: 1150, fill: "#fff" }), inside);
-  defs.append(offBody);
+  const offBody = (id, band) => {
+    const m = el("mask", { id, ...box });
+    const inside = silhouette.cloneNode();
+    inside.removeAttribute("id");
+    inside.setAttribute("fill", "#000");
+    inside.setAttribute("stroke", "#000");
+    inside.setAttribute("stroke-width", band);
+    m.append(el("rect", { x: -100, y: -100, width: 800, height: 1150, fill: "#fff" }), inside);
+    defs.append(m);
+    return `url(#${id})`;
+  };
+  // Feet also stop at the body's own outline, so no rim runs along the joint.
+  const offBodyMask = offBody("zm-off-body", 0);
+  const offBodyFeet = offBody("zm-off-body-feet", 16);
 
   // The body is notched under the right foot; fill it so the notch never
   // shows when that foot moves (its outline is part of #outline-body).
@@ -86,7 +94,7 @@
     groups[name] = wrap(paths);
     const rim = $(`outline-${name}`);
     if (rim) {
-      rim.setAttribute("mask", "url(#zm-off-body)");
+      rim.setAttribute("mask", name.startsWith("leg") ? offBodyFeet : offBodyMask);
       groups[name].prepend(rim);
     }
   }
