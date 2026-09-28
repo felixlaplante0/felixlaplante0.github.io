@@ -94,7 +94,7 @@
     groups[name] = wrap(paths);
     const rim = $(`outline-${name}`);
     if (rim) {
-      rim.setAttribute("mask", name.startsWith("leg") ? offBodyFeet : offBodyMask);
+      if (name !== "armL") rim.setAttribute("mask", name.startsWith("leg") ? offBodyFeet : offBodyMask);
       groups[name].prepend(rim);
     }
   }
@@ -104,8 +104,10 @@
   // The left foot is cut flat along the body, so it sits behind the body with
   // a hidden extension; turning it then never opens a gap at the joint.
   legL.children[0].after(el("ellipse", { cx: 186, cy: 818, rx: 24, ry: 22, fill: "#55c775" }));
+  // Same for the left arm: behind the body, its shoulder cut never shows.
+  armL.children[0].after(el("ellipse", { cx: 152, cy: 532, rx: 34, ry: 32, fill: "#55c775" }));
   const upper = wrap([...svg.children].filter((n) => n !== defs && ![legR, armR, legL, armL].includes(n)));
-  const root = wrap([legL, upper, legR, armR, armL]);
+  const root = wrap([legL, armL, upper, legR, armR]);
   const shadow = el("ellipse", { cx: 280, cy: 912, rx: 215, ry: 20, fill: "#074e2d", opacity: 0.18 });
   root.before(shadow);
   const arms = [armL, armR];
