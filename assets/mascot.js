@@ -114,7 +114,7 @@
 
   const zzz = el("g", { fill: "#074e2d", "font-family": "sans-serif", "font-weight": "700" });
   const zs = [0, 1, 2].map(() => {
-    const t = el("text", { x: 430, y: 330, "font-size": 70, opacity: 0 });
+    const t = el("text", { x: 430, y: 330, "font-size": 90, opacity: 0 });
     t.textContent = "z";
     return t;
   });
