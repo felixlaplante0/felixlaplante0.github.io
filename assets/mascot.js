@@ -122,7 +122,7 @@
     el("path", { d: "M 0 -22 C 8 -8 13 0 13 8 A 13 13 0 0 1 -13 8 C -13 0 -8 -8 0 -22 Z", opacity: 0 }));
   sweat.append(...drops);
   svg.append(sweat);
-  const bang = el("text", { x: 440, y: 310, "font-size": 110, "font-family": "sans-serif", "font-weight": 800, fill: "#074e2d", opacity: 0 });
+  const bang = el("text", { x: 440, y: 310, "font-size": 100, "font-family": "sans-serif", "font-weight": 800, fill: "#074e2d", opacity: 0 });
   bang.textContent = "!";
   svg.append(bang);
   svg.style.overflow = "visible";
