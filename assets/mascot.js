@@ -36,8 +36,7 @@
   svg.setAttribute("role", "img");
   svg.setAttribute("aria-label", img.alt || "Zucchini mascot");
 
-  // Each part (body, leaf, arms, feet) has its own outline in the SVG
-  // (#outline-<part>); move it into the part's group so they animate together.
+  // Each part's outline (#outline-<part>) moves into the part's group.
   const parts = {
     leaf: range(52, 56),
     legR: [$("path26"), ...range(57, 59)],
@@ -50,8 +49,7 @@
   svg.prepend(defs);
   const box = { maskUnits: "userSpaceOnUse", x: -100, y: -100, width: 800, height: 1150 };
 
-  // Part outlines were hidden by the body where they overlap it; now that
-  // parts are drawn above the body, mask that overlap out explicitly.
+  // Parts are drawn above the body, so mask their outlines where they overlap it.
   const offBody = (id, band) => {
     const m = el("mask", { id, ...box });
     const inside = silhouette.cloneNode();
@@ -63,19 +61,16 @@
     defs.append(m);
     return `url(#${id})`;
   };
-  // Feet also stop at the body's own outline, so no rim runs along the joint.
   const offBodyMask = offBody("zm-off-body", 0);
   const offBodyFeet = offBody("zm-off-body-feet", 16);
 
-  // The body is notched under the right foot; fill it so the notch never
-  // shows when that foot moves (its outline is part of #outline-body).
+  // Fill the notch in the body under the right foot.
   const notch = el("path", {
     d: "M 336 838 C 362 830 392 816 409 795 L 399 803 L 383 806 L 363 809 L 347 815 L 343 821 L 343 837 Z",
     fill: "#99d172",
   });
   silhouette.after(notch);
 
-  // Only the white glints move, sliding inside the dark irises.
   const clip = (id, paths) => {
     const c = el("clipPath", { id });
     c.append(...paths.map((p) => { const n = p.cloneNode(); n.removeAttribute("id"); return n; }));
@@ -99,12 +94,11 @@
     }
   }
   const { armL, armR, legL, legR, leaf } = groups;
-  // Jumps move an outer wrapper so the sway never has to stop (no snapping).
+  // Jumps move an outer wrapper so the sway never has to stop.
   const leafJump = wrap([leaf]);
-  // The left foot is cut flat along the body, so it sits behind the body with
-  // a hidden extension; turning it then never opens a gap at the joint.
+  // The left foot and arm sit behind the body with a hidden extension, so
+  // turning them never opens a gap at the joint.
   legL.children[0].after(el("ellipse", { cx: 186, cy: 818, rx: 24, ry: 22, fill: "#55c775" }));
-  // Same for the left arm: behind the body, its shoulder cut never shows.
   armL.children[0].after(el("ellipse", { cx: 152, cy: 532, rx: 34, ry: 32, fill: "#55c775" }));
   const upper = wrap([...svg.children].filter((n) => n !== defs && ![legR, armR, legL, armL].includes(n)));
   const root = wrap([legL, armL, upper, legR, armR]);
@@ -123,14 +117,13 @@
   zzz.append(...zs);
   svg.append(zzz);
 
-  // Sweat drops for the exhausted state, spraying off both sides of the head.
   const sweat = el("g", { fill: "#3fa9f5", stroke: "#074e2d", "stroke-width": 5, "stroke-linejoin": "round" });
   const drops = Array.from({ length: 6 }, () =>
     el("path", { d: "M 0 -22 C 8 -8 13 0 13 8 A 13 13 0 0 1 -13 8 C -13 0 -8 -8 0 -22 Z", opacity: 0 }));
   sweat.append(...drops);
   svg.append(sweat);
   svg.style.overflow = "visible";
-  svg.style.userSelect = svg.style.webkitUserSelect = "none"; // rubbing must not select the z's
+  svg.style.userSelect = svg.style.webkitUserSelect = "none";
   for (const layer of [zzz, sweat]) layer.style.pointerEvents = "none";
 
   img.replaceWith(svg);
@@ -146,13 +139,11 @@
   gsap.set([leaf, leafJump], { svgOrigin: "280 196" });
   gsap.set(shadow, { svgOrigin: "280 912" });
 
-  // The leaf sways gently in every state.
   const leafSway = gsap.fromTo(leaf, { rotation: -5 },
     { rotation: 5, duration: 1.7, repeat: -1, yoyo: true, ease: "sine.inOut" });
 
   let state = "idle"; // idle | happy | tired | love | sleep | waking
 
-  // Idle: breathing and a slight arm sway.
   const idle = gsap.timeline({ repeat: -1, yoyo: true, defaults: { ease: "sine.inOut", duration: 1.8 } })
     .to(upper, { scaleY: 1.012, scaleX: 0.994 }, 0)
     .to(armL, { rotation: 1.5 }, 0)
@@ -168,8 +159,7 @@
   };
   gsap.delayedCall(1.5, blink);
 
-  // Each glint's neutral spot and how far it may go right (see follow()):
-  // the right-hand iris has more room on that side.
+  // Per-glint rest spot and rightward reach.
   const gaze = [
     { glint: glintL, rest: { x: -2, y: 2 }, right: 1 },
     { glint: glintR, rest: { x: -1, y: 2 }, right: 5 },
@@ -184,11 +174,7 @@
     const cy = (462 * ctm.d) + ctm.f;
     const dx = e.clientX - cx;
     const dy = e.clientY - cy;
-    // The glints travel inside a tall ellipse, like the irises. They are
-    // drawn high and to the right, so the ellipse is centred a little down
-    // and to the left of them, with little reach up or right. Inside it the
-    // axes are independent (sweeping sideways never moves them up or down);
-    // at its edge they are pulled back onto it.
+    // Glints move in a tall ellipse: axes independent inside, clamped at its edge.
     let qx = dx / 250;
     let qy = dy / 250;
     const r = Math.hypot(qx, qy);
@@ -200,13 +186,11 @@
   };
 
   let happyTl;
-  // A new jump may only start once the previous one has landed (the second
-  // hop touches down at LANDED). A click during the last 40% of the hops
-  // is queued and fires on touchdown; earlier clicks are ignored.
+  // Clicks in the last 40% of the hops queue a jump for touchdown; earlier ones are ignored.
   const LANDED = 0.78;
   const QUEUE_FROM = LANDED * 0.6;
   let queued = false;
-  let wearingOut = false; // the current jump ends in the exhausted state
+  let wearingOut = false;
   const press = () => {
     if (state === "idle") return happy();
     if (state !== "happy" || wearingOut) return;
@@ -214,7 +198,6 @@
     if (t >= LANDED) happy();
     else if (t >= QUEUE_FROM) queued = true;
   };
-  // Three jumps within three seconds wear the mascot out.
   const jumps = [];
   const TIRED_JUMPS = 3;
   const TIRED_WINDOW = 3000;
@@ -242,7 +225,6 @@
         .to(legs, { rotation: 0, duration: down, ease: "power2.in" }, t + up)
         .to(leafJump, { rotation: -4, duration: down, ease: "power1.in" }, t + up);
     };
-    // Arms swing back and forth (foreshortened toward/away from the viewer).
     happyTl = gsap.timeline({ onComplete: worn ? tired : () => { state = "idle"; idle.resume(); } });
     hop(0, 60, 0.22, 0.2);
     hop(0.42, 35, 0.18, 0.18);
@@ -255,8 +237,6 @@
     if (!worn) happyTl.add(() => { if (queued) happy(); }, LANDED);
   };
 
-  // Exhausted: slumps, droopy eyes, arms dangling, panting and sweating,
-  // then pulls itself back together.
   const sweatTl = gsap.timeline({ paused: true, repeat: -1 });
   drops.forEach((drop, i) => {
     const left = i % 2 === 0;
@@ -283,7 +263,7 @@
       .to(leafJump, { rotation: 0, duration: 0.5 }, 0)
       .to(shadow, { scaleX: 1.06, opacity: 0.2, duration: 0.4 }, 0)
       .to(upper, pant, 0.4);
-    // Keep the shoulders attached while the body stretches about (280, 850).
+    // Keep the shoulders attached to the panting body.
     const { scaleX, scaleY, ...beat } = pant;
     const shoulder = (arm, sx, sy) =>
       tl.to(arm, { x: (sx - 280) * (scaleX - 1), y: 22 + (sy - 850) * (scaleY - 1), ...beat }, 0.4);
@@ -297,7 +277,6 @@
     toRest({ duration: 0.3 });
     standUp();
   };
-  // Back to the idle pose (after being tired or asleep).
   const standUp = () => gsap.timeline({ onComplete: () => { state = "idle"; idle.restart(); nap(); } })
     .to([upper, ...arms, ...legs], { x: 0, y: 0, rotation: 0, scaleY: 1, scaleX: 1, duration: 0.45, ease: "back.out(2)" }, 0)
     .to(shadow, { scale: 1, opacity: 0.18, duration: 0.45 }, 0)
@@ -316,7 +295,6 @@
     idle.pause();
     toRest({ duration: 0.4 });
     gsap.to(leafSway, { timeScale: 0.4, duration: 1 });
-    // Sits down: everything sinks and the feet splay outward around the joints.
     sleepTl = gsap.timeline()
       .to(eyes, { scaleY: 0.08, duration: 0.8, ease: "power2.inOut" }, 0)
       .to(arms, { rotation: 0, duration: 0.5 }, 0)
@@ -337,21 +315,18 @@
     standUp();
   };
 
-  // Love: rubbing the mascot with the button held makes it blush (cheeks
-  // swell and turn pink), close its eyes as when falling asleep, lean into
-  // the hand and let hearts float up around its head while it lasts.
+  // Love: rubbing with the button held.
   const cheeks = [$("path7"), $("path51")];
   const hearts = el("g", { fill: "#ff5c8a", stroke: "#074e2d", "stroke-width": 5, "stroke-linejoin": "round" });
   hearts.style.pointerEvents = "none";
   svg.append(hearts);
-  let rubbing = null; // { x, y, t, energy } while the pointer is down on the mascot
-  let petted = false; // swallows the click that ends a rub
+  let rubbing = null;
+  let petted = false;
   let loveTimer;
   let lastHeart = 0;
-  // Rubbing builds up "energy" (px moved) that drains while the hand slows
-  // down, so only a second or so of steady rubbing counts as petting.
+  // Rubbing fills a gauge (px moved) that drains when the hand slows down.
   const RUB_ENERGY = 100;
-  const RUB_DRAIN = 50; // px per second
+  const RUB_DRAIN = 50;
   const spawnHeart = () => {
     const h = el("path", { d: "M 0 14 C -26 -4 -18 -26 0 -10 C 18 -26 26 -4 0 14 Z", opacity: 0 });
     hearts.append(h);
@@ -416,7 +391,7 @@
   const release = () => { rubbing = null; endLove(); };
   window.addEventListener("pointerup", release);
   window.addEventListener("pointercancel", release);
-  svg.style.touchAction = "none"; // rubbing with a finger must not scroll the page
+  svg.style.touchAction = "none";
   svg.addEventListener("click", () => {
     nap();
     if (petted) petted = false;
