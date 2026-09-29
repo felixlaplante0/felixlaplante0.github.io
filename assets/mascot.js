@@ -148,7 +148,7 @@
   const leafSway = gsap.fromTo(leaf, { rotation: -5 },
     { rotation: 5, duration: 1.7, repeat: -1, yoyo: true, ease: "sine.inOut" });
 
-  let state = "idle"; // idle | happy | tired | sleep | waking
+  let state = "idle"; // idle | happy | tired | love | sleep | waking
 
   // Idle: breathing and a slight arm sway.
   const idle = gsap.timeline({ repeat: -1, yoyo: true, defaults: { ease: "sine.inOut", duration: 1.8 } })
@@ -175,7 +175,7 @@
   const toRest = (vars) => gaze.forEach(({ glint, rest }) => gsap.to(glint, { ...rest, ...vars }));
   gaze.forEach(({ glint, rest }) => gsap.set(glint, rest));
   const follow = (e) => {
-    if (state === "sleep" || state === "tired") return;
+    if (state === "sleep" || state === "tired" || state === "love") return;
     const ctm = svg.getScreenCTM();
     if (!ctm) return;
     const cx = (265 * ctm.a) + ctm.e;
@@ -335,6 +335,68 @@
     standUp();
   };
 
+  // Love: rubbing the mascot with the button held makes it blush (cheeks
+  // swell and turn pink), close its eyes as when falling asleep, lean into
+  // the hand and let hearts float up around its head while it lasts.
+  const cheeks = [$("path7"), $("path51")];
+  const hearts = el("g", { fill: "#ff5c8a", stroke: "#074e2d", "stroke-width": 5, "stroke-linejoin": "round" });
+  svg.append(hearts);
+  let rubbing = null; // { x, y, t, energy } while the pointer is down on the mascot
+  let petted = false; // swallows the click that ends a rub
+  let loveTimer;
+  let lastHeart = 0;
+  // Rubbing builds up "energy" (px moved) that drains while the hand slows
+  // down, so only a second or so of steady rubbing counts as petting.
+  const RUB_ENERGY = 300;
+  const RUB_DRAIN = 200; // px per second
+  const spawnHeart = () => {
+    const h = el("path", { d: "M 0 14 C -26 -4 -18 -26 0 -10 C 18 -26 26 -4 0 14 Z", opacity: 0 });
+    hearts.append(h);
+    const x = 170 + Math.random() * 230;
+    gsap.timeline({ onComplete: () => h.remove() })
+      .fromTo(h, { x, y: 340, scale: 0.5, transformOrigin: "50% 50%" },
+        { x: x + (Math.random() - 0.5) * 90, y: 150 - Math.random() * 60, scale: 1.3 + Math.random() * 0.8,
+          duration: 1.7, ease: "sine.out" }, 0)
+      .to(h, { opacity: 1, duration: 0.2 }, 0)
+      .to(h, { opacity: 0, duration: 0.5 }, 1.2);
+  };
+  const startLove = () => {
+    state = "love";
+    idle.pause();
+    gsap.to(eyes, { scaleY: 0.08, duration: 0.5, ease: "power2.inOut", overwrite: "auto" });
+    gsap.to(cheeks, { fill: "#ffa3b8", scale: 1.4, transformOrigin: "50% 50%", duration: 0.4 });
+  };
+  const endLove = () => {
+    if (state !== "love") return;
+    clearTimeout(loveTimer);
+    state = "idle";
+    gsap.to(eyes, { scaleY: 1, duration: 0.25, overwrite: "auto" });
+    gsap.to(cheeks, { fill: "#f0e9aa", scale: 1, duration: 0.5 });
+    gsap.to(root, { rotation: 0, duration: 0.5, ease: "back.out(2)", overwrite: "auto" });
+    idle.resume();
+    if (rubbing) rubbing.energy = 0;
+  };
+  const rub = (e) => {
+    if (!rubbing) return;
+    const moved = Math.hypot(e.clientX - rubbing.x, e.clientY - rubbing.y);
+    const drained = rubbing.energy - RUB_DRAIN * (e.timeStamp - rubbing.t) / 1000;
+    rubbing.energy = Math.max(0, drained) + moved;
+    rubbing.x = e.clientX;
+    rubbing.y = e.clientY;
+    rubbing.t = e.timeStamp;
+    if (state === "idle" && rubbing.energy > RUB_ENERGY) startLove();
+    if (state !== "love") return;
+    petted = true;
+    clearTimeout(loveTimer);
+    loveTimer = setTimeout(endLove, 800);
+    const { left, width } = svg.getBoundingClientRect();
+    gsap.to(root, { rotation: gsap.utils.clamp(-1, 1, (e.clientX - left) / width * 2 - 1), duration: 0.4, overwrite: "auto" });
+    if (e.timeStamp - lastHeart > 220) {
+      lastHeart = e.timeStamp;
+      spawnHeart();
+    }
+  };
+
   let timer;
   const SLEEP_AFTER = 6000;
   const nap = () => { clearTimeout(timer); timer = setTimeout(sleep, SLEEP_AFTER); };
@@ -342,9 +404,20 @@
   window.addEventListener("pointermove", (e) => { follow(e); nap(); }, { passive: true });
   window.addEventListener("keydown", () => { wake(); nap(); });
   svg.addEventListener("pointerenter", () => { wake(); nap(); });
+  svg.addEventListener("pointerdown", (e) => {
+    if (e.button !== 0) return;
+    rubbing = { x: e.clientX, y: e.clientY, t: e.timeStamp, energy: 0 };
+    petted = false;
+  });
+  svg.addEventListener("pointermove", rub);
+  const release = () => { rubbing = null; endLove(); };
+  window.addEventListener("pointerup", release);
+  window.addEventListener("pointercancel", release);
+  svg.style.touchAction = "none"; // rubbing with a finger must not scroll the page
   svg.addEventListener("click", () => {
     nap();
-    if (state === "sleep") wake();
+    if (petted) petted = false;
+    else if (state === "sleep") wake();
     else press();
   });
   svg.style.cursor = "pointer";
