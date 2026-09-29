@@ -122,9 +122,12 @@
     el("path", { d: "M 0 -22 C 8 -8 13 0 13 8 A 13 13 0 0 1 -13 8 C -13 0 -8 -8 0 -22 Z", opacity: 0 }));
   sweat.append(...drops);
   svg.append(sweat);
+  const bang = el("text", { x: 440, y: 310, "font-size": 110, "font-family": "sans-serif", "font-weight": 800, fill: "#074e2d", opacity: 0 });
+  bang.textContent = "!";
+  svg.append(bang);
   svg.style.overflow = "visible";
   svg.style.userSelect = svg.style.webkitUserSelect = "none";
-  for (const layer of [zzz, sweat]) layer.style.pointerEvents = "none";
+  for (const layer of [zzz, sweat, bang]) layer.style.pointerEvents = "none";
 
   img.replaceWith(svg);
 
@@ -138,6 +141,7 @@
   gsap.set(eyeR, { svgOrigin: "335 462" });
   gsap.set([leaf, leafJump], { svgOrigin: "280 196" });
   gsap.set(shadow, { svgOrigin: "280 912" });
+  gsap.set(bang, { svgOrigin: "460 260" });
 
   const leafSway = gsap.fromTo(leaf, { rotation: -5 },
     { rotation: 5, duration: 1.7, repeat: -1, yoyo: true, ease: "sine.inOut" });
@@ -312,7 +316,19 @@
     zTl.pause();
     gsap.to(zs, { opacity: 0, duration: 0.2 });
     gsap.to(leafSway, { timeScale: 1, duration: 0.5 });
-    standUp();
+    // Startled: pops up, eyes wide, arms flung out, "!" above the head.
+    gsap.timeline({ onComplete: () => { state = "idle"; idle.restart(); nap(); } })
+      .to([upper, ...arms, ...legs], { x: 0, y: 0, rotation: 0, scaleY: 1, scaleX: 1, duration: 0.2, ease: "power2.out" }, 0)
+      .to(shadow, { scale: 1, opacity: 0.18, duration: 0.3 }, 0)
+      .to(eyes, { scaleY: 1.3, scaleX: 1.2, duration: 0.12, ease: "power2.out" }, 0)
+      .to(root, { y: -28, duration: 0.12, ease: "power2.out" }, 0)
+      .to(root, { y: 0, duration: 0.35, ease: "bounce.out" }, 0.12)
+      .to(armL, { rotation: 25, duration: 0.12 }, 0)
+      .to(armR, { rotation: -25, duration: 0.12 }, 0)
+      .fromTo(bang, { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(3)" }, 0.05)
+      .to(bang, { opacity: 0, duration: 0.3 }, 0.9)
+      .to(eyes, { scaleY: 1, scaleX: 1, duration: 0.3 }, 0.9)
+      .to(arms, { rotation: 0, duration: 0.3, ease: "power2.inOut" }, 0.9);
   };
 
   // Love: rubbing with the button held.
