@@ -130,6 +130,8 @@
   sweat.append(...drops);
   svg.append(sweat);
   svg.style.overflow = "visible";
+  svg.style.userSelect = svg.style.webkitUserSelect = "none"; // rubbing must not select the z's
+  for (const layer of [zzz, sweat]) layer.style.pointerEvents = "none";
 
   img.replaceWith(svg);
 
@@ -340,6 +342,7 @@
   // the hand and let hearts float up around its head while it lasts.
   const cheeks = [$("path7"), $("path51")];
   const hearts = el("g", { fill: "#ff5c8a", stroke: "#074e2d", "stroke-width": 5, "stroke-linejoin": "round" });
+  hearts.style.pointerEvents = "none";
   svg.append(hearts);
   let rubbing = null; // { x, y, t, energy } while the pointer is down on the mascot
   let petted = false; // swallows the click that ends a rub
@@ -347,7 +350,7 @@
   let lastHeart = 0;
   // Rubbing builds up "energy" (px moved) that drains while the hand slows
   // down, so only a second or so of steady rubbing counts as petting.
-  const RUB_ENERGY = 300;
+  const RUB_ENERGY = 200;
   const RUB_DRAIN = 200; // px per second
   const spawnHeart = () => {
     const h = el("path", { d: "M 0 14 C -26 -4 -18 -26 0 -10 C 18 -26 26 -4 0 14 Z", opacity: 0 });
