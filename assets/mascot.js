@@ -351,7 +351,7 @@
   // Rubbing builds up "energy" (px moved) that drains while the hand slows
   // down, so only a second or so of steady rubbing counts as petting.
   const RUB_ENERGY = 200;
-  const RUB_DRAIN = 200; // px per second
+  const RUB_DRAIN = 100; // px per second
   const spawnHeart = () => {
     const h = el("path", { d: "M 0 14 C -26 -4 -18 -26 0 -10 C 18 -26 26 -4 0 14 Z", opacity: 0 });
     hearts.append(h);
