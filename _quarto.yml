@@ -39,10 +39,15 @@ website:
 
 format:
   html:
-    theme: [cosmo, theme.scss]
-    toc: false
+    theme:
+      light: [cosmo, theme.scss]
+      dark: [cosmo, theme.scss, theme-dark.scss]
+    respect-user-color-scheme: true
     canonical-url: true
     header-includes: |
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,700&family=EB+Garamond:ital@0;1&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
 resources:

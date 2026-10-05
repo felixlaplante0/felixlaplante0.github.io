@@ -12,7 +12,6 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
 
 jobs:
   build:
@@ -25,9 +24,7 @@ jobs:
       - name: Fetch GSAP
         run: |
           mkdir -p assets/vendor
-          curl -fsSL "https://cdn.jsdelivr.net/npm/gsap@${GSAP_VERSION}/dist/gsap.min.js" -o assets/vendor/gsap.min.js
-        env:
-          GSAP_VERSION: 3.15.0
+          curl -fsSL https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js -o assets/vendor/gsap.min.js
 
       - name: Render site
         run: quarto render
