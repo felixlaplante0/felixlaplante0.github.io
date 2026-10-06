@@ -1,9 +1,8 @@
-// Animated zucchini mascot. Progressive enhancement: the static <img> stays
-// in place unless GSAP is available and the SVG can be inlined.
+import { gsap } from "gsap";
+
 (async () => {
-  const img = document.querySelector(".mascot img[src$='logo.svg']");
-  const gsap = window.gsap;
-  if (!img || !gsap || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const img = document.querySelector(".mascot img");
+  if (!img || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   let svg;
   try {

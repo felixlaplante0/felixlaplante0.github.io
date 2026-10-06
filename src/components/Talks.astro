@@ -1,0 +1,15 @@
+---
+import { getCollection, render } from "astro:content";
+import { monthYear, newestFirst } from "../lib/dates";
+
+const talks = (await getCollection("talks")).sort(newestFirst);
+const rendered = await Promise.all(talks.map(async (talk) => ({ ...talk.data, ...(await render(talk)) })));
+---
+
+{rendered.map(({ title, kind, event, place, date, Content }) => (
+  <article class="entry">
+    <h3>{title}</h3>
+    <p class="venue">{kind} · <em>{event}</em>, {place}, {monthYear(date)}</p>
+    <Content />
+  </article>
+))}

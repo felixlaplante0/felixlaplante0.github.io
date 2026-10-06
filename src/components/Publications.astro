@@ -1,0 +1,15 @@
+---
+import { getCollection } from "astro:content";
+import Publication from "./Publication.astro";
+import { newestFirst } from "../lib/dates";
+
+const publications = (await getCollection("publications")).sort(newestFirst);
+const byYear = Map.groupBy(publications, (entry) => entry.data.date.getUTCFullYear());
+---
+
+{[...byYear].map(([year, entries]) => (
+  <section>
+    <h2>{year}</h2>
+    {entries.map((entry) => <Publication entry={entry} />)}
+  </section>
+))}

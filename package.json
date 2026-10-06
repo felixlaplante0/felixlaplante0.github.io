@@ -1,0 +1,28 @@
+{
+  "name": "felixlaplante",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "check": "astro check",
+    "build": "astro check && astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^8.0.2",
+    "@iconify-json/academicons": "^1.2.4",
+    "@iconify-json/bi": "^1.2.7",
+    "astro": "^7.3.5",
+    "astro-icon": "^1.2.0",
+    "gsap": "^3.15.0",
+    "headroom.js": "^0.12.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/headroom.js": "^0.12.4",
+    "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

@@ -1,5 +1,6 @@
 ---
-title: "Contact"
+layout: ../layouts/Base.astro
+title: Contact
 ---
 
 **Félix Laplante**
@@ -12,8 +13,4 @@ Université Paris-Saclay, Univ Évry\
 
 [contact@felixlaplante.com](mailto:contact@felixlaplante.com)
 
-<iframe
-  src="https://www.openstreetmap.org/export/embed.html?bbox=2.4360%2C48.6220%2C2.4460%2C48.6280&layer=mapnik&marker=48.6250%2C2.4410"
-  class="map"
-  allowfullscreen>
-</iframe>
+<iframe class="map" title="Map of LaMME" src="https://www.openstreetmap.org/export/embed.html?bbox=2.4360%2C48.6220%2C2.4460%2C48.6280&layer=mapnik&marker=48.6250%2C2.4410" allowfullscreen></iframe>

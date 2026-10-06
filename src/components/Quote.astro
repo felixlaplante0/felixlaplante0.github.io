@@ -1,0 +1,18 @@
+---
+import { Font } from "astro:assets";
+
+interface Props {
+  translation: string;
+  author: string;
+}
+
+const { translation, author } = Astro.props;
+---
+
+<Font cssVariable="--font-serif" />
+
+<blockquote class="quote">
+  <p lang="fr"><em><slot /></em></p>
+  <p class="translation"><em>{translation}</em></p>
+  <footer>— {author}</footer>
+</blockquote>

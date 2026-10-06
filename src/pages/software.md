@@ -1,5 +1,6 @@
 ---
-title: "Software"
+layout: ../layouts/Base.astro
+title: Software
 ---
 
 | Package | Description |
@@ -10,5 +11,5 @@ title: "Software"
 | [otlingam](https://github.com/felixlaplante0/otlingam) | `Python` package for causal discovery in linear non-Gaussian models using Wasserstein non-Gaussianity. |
 | [uniformbands](https://github.com/felixlaplante0/uniformbands) | `Python` package deriving asymptotic uniform confidence bands for survival functions in large probability. |
 | [sbcluster](https://github.com/felixlaplante0/sbcluster) | `Python` package implementing Spectral Bridges, a scalable topological clustering algorithm. Partitions data via Voronoï regions then detects cluster boundaries and low-density zones through scale-invariant spectral methods. |
-| [fastkmeanspp](https://github.com/felixlaplante0/fastkmeanspp) | Fast `C++`-backed k-means++ initialisation for `Python`. Accelerates the seeding step with a `BLAS` routine for probabilistic distance-based scheme, with potential speedups of $\times 10$ compared to `scikit-learn`. |
+| [fastkmeanspp](https://github.com/felixlaplante0/fastkmeanspp) | Fast `C++`-backed k-means++ initialisation for `Python`. Accelerates the seeding step with a `BLAS` routine for probabilistic distance-based scheme, with potential speedups of ×10 compared to `scikit-learn`. |
 | [mimisbm](https://github.com/felixlaplante0/mimisbm) | Fast vectorized `Python` port of the corresponding `R` project, implementing a mixture of multilayer stochastic block models. See the [CRAN](https://cran.r-project.org/web/packages/mimiSBM) for more information about the original project. |

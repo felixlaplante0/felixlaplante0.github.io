@@ -1,0 +1,50 @@
+---
+import { getEntries, render, type CollectionEntry } from "astro:content";
+import { Code } from "astro:components";
+import { Icon } from "astro-icon/components";
+import { monthYear } from "../lib/dates";
+
+interface Props {
+  entry: CollectionEntry<"publications">;
+}
+
+const { entry } = Astro.props;
+const { title, venue, date, doi, arxiv, code, bibtex } = entry.data;
+const [authors, { Content }] = await Promise.all([getEntries(entry.data.authors), render(entry)]);
+
+const repos = typeof code === "string" ? { "": code } : (code ?? {});
+const links = [
+  doi && { kind: "doi", label: "DOI", href: `https://doi.org/${doi}`, icon: "academicons:doi" },
+  arxiv && { kind: "arxiv", label: "arXiv", href: `https://arxiv.org/abs/${arxiv}`, icon: "academicons:arxiv" },
+  arxiv && { kind: "pdf", label: "PDF", href: `https://arxiv.org/pdf/${arxiv}`, icon: "bi:file-earmark-pdf" },
+  ...Object.entries(repos).map(([name, href]) => ({ kind: "code", label: `Code ${name}`.trim(), href, icon: "bi:github" })),
+].filter((link) => !!link);
+---
+
+<article class="entry">
+  <h3>{title}</h3>
+  <p class="authors">
+    {authors.map(({ data: { name, url, me } }, i) => (
+      <>{i > 0 && ", "}{me ? <strong>{name}</strong> : url ? <a href={url}>{name}</a> : name}</>
+    ))}
+  </p>
+  <p class="venue"><Fragment set:html={venue} />, {monthYear(date)}</p>
+  <div class="links">
+    {links.map(({ kind, label, href, icon }) => <a class={kind} href={href}><Icon name={icon} />{label}</a>)}
+    <details class="abstract">
+      <summary><Icon name="bi:text-paragraph" />Abstract</summary>
+      <Content />
+    </details>
+    <details class="bibtex">
+      <summary><Icon name="bi:quote" />BibTeX</summary>
+      <Code code={bibtex} lang="bibtex" themes={{ light: "github-light", dark: "github-dark" }} defaultColor="light-dark()" />
+      <button class="copy" aria-label="Copy BibTeX" title="Copy"><Icon name="bi:clipboard" /></button>
+    </details>
+  </div>
+</article>
+
+<script>
+  for (const button of document.querySelectorAll<HTMLButtonElement>(".entry .copy")) {
+    button.addEventListener("click", () => navigator.clipboard.writeText(button.previousElementSibling!.textContent!));
+  }
+</script>
