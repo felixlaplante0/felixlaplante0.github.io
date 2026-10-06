@@ -1,5 +1,6 @@
 ---
 import { Font } from "astro:assets";
+import { ClientRouter } from "astro:transitions";
 import { Icon } from "astro-icon/components";
 import { pages, socials, title as site } from "../site";
 import "../styles/global.css";
@@ -17,12 +18,15 @@ const { title } = Astro.props.frontmatter;
     <link rel="canonical" href={Astro.url} />
     <Font cssVariable="--font-body" preload={[{ weight: 400, style: "normal" }]} />
     <Font cssVariable="--font-heading" />
+    <ClientRouter />
     <script is:inline>
-      document.documentElement.dataset.theme = localStorage.getItem("theme") ?? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      const setTheme = (doc) => (doc.documentElement.dataset.theme = localStorage.getItem("theme") ?? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+      setTheme(document);
+      document.addEventListener("astro:before-swap", (e) => setTheme(e.newDocument));
     </script>
   </head>
   <body>
-    <header>
+    <header transition:persist>
       <nav>
         <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="menu"><Icon name="bi:list" /></button>
         <a href="/" class="logo"><img src="/assets/logo.svg" alt={site} /></a>
@@ -53,6 +57,14 @@ const { title } = Astro.props.frontmatter;
       const toggle = document.querySelector(".menu-toggle")!;
       toggle.addEventListener("click", () => {
         toggle.setAttribute("aria-expanded", String(toggle.getAttribute("aria-expanded") !== "true"));
+      });
+
+      document.addEventListener("astro:page-load", () => {
+        toggle.setAttribute("aria-expanded", "false");
+        for (const a of document.querySelectorAll<HTMLAnchorElement>(".pages a")) {
+          if (a.pathname === location.pathname) a.setAttribute("aria-current", "page");
+          else a.removeAttribute("aria-current");
+        }
       });
 
       const root = document.documentElement;

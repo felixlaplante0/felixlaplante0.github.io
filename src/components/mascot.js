@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
 
-(async () => {
+document.addEventListener("astro:page-load", async () => {
   const img = document.querySelector(".mascot img");
   if (!img || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -12,6 +12,10 @@ import { gsap } from "gsap";
     return;
   }
   if (!svg || svg.nodeName !== "svg") return;
+
+  const ac = new AbortController();
+  document.addEventListener("astro:before-swap", () => ac.abort(), { once: true });
+  const { signal } = ac;
 
   const NS = "http://www.w3.org/2000/svg";
   const $ = (id) => svg.querySelector(`#${id}`);
@@ -394,8 +398,8 @@ import { gsap } from "gsap";
   const SLEEP_AFTER = 6000;
   const nap = () => { clearTimeout(timer); timer = setTimeout(sleep, SLEEP_AFTER); };
 
-  window.addEventListener("pointermove", (e) => { follow(e); nap(); }, { passive: true });
-  window.addEventListener("keydown", () => { wake(); nap(); });
+  window.addEventListener("pointermove", (e) => { follow(e); nap(); }, { passive: true, signal });
+  window.addEventListener("keydown", () => { wake(); nap(); }, { signal });
   svg.addEventListener("pointerenter", () => { wake(); nap(); });
   svg.addEventListener("pointerdown", (e) => {
     if (e.button !== 0) return;
@@ -404,8 +408,8 @@ import { gsap } from "gsap";
   });
   svg.addEventListener("pointermove", rub);
   const release = () => { rubbing = null; endLove(); };
-  window.addEventListener("pointerup", release);
-  window.addEventListener("pointercancel", release);
+  window.addEventListener("pointerup", release, { signal });
+  window.addEventListener("pointercancel", release, { signal });
   svg.style.touchAction = "none";
   svg.addEventListener("click", () => {
     nap();
@@ -415,4 +419,4 @@ import { gsap } from "gsap";
   });
   svg.style.cursor = "pointer";
   nap();
-})();
+});

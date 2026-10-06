@@ -44,7 +44,9 @@ const links = [
 </article>
 
 <script>
-  for (const button of document.querySelectorAll<HTMLButtonElement>(".entry .copy")) {
-    button.addEventListener("click", () => navigator.clipboard.writeText(button.previousElementSibling!.textContent!));
-  }
+  document.addEventListener("astro:page-load", () => {
+    for (const button of document.querySelectorAll<HTMLButtonElement>(".entry .copy")) {
+      button.addEventListener("click", () => navigator.clipboard.writeText(button.previousElementSibling!.textContent!));
+    }
+  });
 </script>

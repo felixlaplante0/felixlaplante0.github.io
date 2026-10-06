@@ -79,24 +79,11 @@ button {
   display: none;
 }
 
-@view-transition {
-  navigation: auto;
-}
-
-::view-transition-old(header) {
-  display: none;
-}
-
-::view-transition-new(header) {
-  animation: none;
-}
-
 html {
   scrollbar-gutter: stable;
 }
 
 header {
-  view-transition-name: header;
   position: sticky;
   top: 0;
   z-index: 1;
