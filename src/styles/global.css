@@ -96,7 +96,7 @@ nav {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem 1.5rem;
+  gap: 0.5rem 1.1rem;
   padding: 0.5rem 1.5rem;
 
   ul {
@@ -120,12 +120,50 @@ nav {
     text-decoration: none;
   }
 
-  .pages {
+  #menu {
+    display: flex;
     flex: 1;
+    gap: 0.5rem 1.1rem;
+    margin-left: 0.4rem;
   }
 
   .socials {
     margin-left: auto;
+  }
+
+  .menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+  }
+
+  @media (width < 48rem) {
+    .menu-toggle {
+      display: block;
+    }
+
+    #theme {
+      margin-left: auto;
+    }
+
+    #menu {
+      display: none;
+      flex-direction: column;
+      flex-basis: 100%;
+      order: 1;
+      margin: 0 0 0.5rem;
+    }
+
+    [aria-expanded="true"] ~ #menu {
+      display: flex;
+    }
+
+    .pages {
+      flex-direction: column;
+    }
+
+    .socials {
+      margin-left: 0;
+    }
   }
 }
 
