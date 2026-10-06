@@ -120,6 +120,10 @@ nav {
     text-decoration: none;
   }
 
+  .pages {
+    flex: 1;
+  }
+
   .socials {
     margin-left: auto;
   }
