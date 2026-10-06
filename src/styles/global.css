@@ -83,6 +83,14 @@ button {
   navigation: auto;
 }
 
+::view-transition-old(header) {
+  display: none;
+}
+
+::view-transition-new(header) {
+  animation: none;
+}
+
 html {
   scrollbar-gutter: stable;
 }
