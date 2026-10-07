@@ -418,5 +418,6 @@ document.addEventListener("astro:page-load", async () => {
     else press();
   });
   svg.style.cursor = "pointer";
+  svg.style.webkitTapHighlightColor = "transparent";
   nap();
 });
