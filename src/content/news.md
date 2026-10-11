@@ -1,3 +1,4 @@
+- **October 2026** I'm delighted to have been awarded the [ICSDS 2026](https://sites.google.com/view/ims-icsds2026/home) Student Travel Award.
 - **September 2026** Launched [Atelier LLM](https://atelier-llm.pages.dev), the course materials (slides, notebooks and notes) for my workshop on large language models.
 - **July 2026** New preprint: [Contrast-Free ICA and Causal Inference via Wasserstein Distances to the Gaussian](https://arxiv.org/abs/2607.12832).
 - **May 2026** New preprint: [A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores](https://arxiv.org/abs/2605.25852).
