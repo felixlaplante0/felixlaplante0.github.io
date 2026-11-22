@@ -61,19 +61,22 @@ const { lat, lng, zoom = 16, label } = Astro.props;
     L.marker([lat, lng], { icon }).addTo(activeMap);
 
     let targetZoom = zoom;
-    let zoomPoint: L.Point | null = null;
+    let anchorLatLng: L.LatLng | null = null;
+    let cursorOffset: L.Point | null = null;
+    let lastPoint: L.Point | null = null;
     let zooming = false;
 
-    const zoomAround = (map: SmoothMap, point: L.Point, nextZoom: number) => {
-      const scale = map.getZoomScale(nextZoom, map.getZoom());
-      const viewHalf = map.getSize().divideBy(2);
-      const offset = point.subtract(viewHalf).multiplyBy(1 - 1 / scale);
-      const center = map.containerPointToLatLng(viewHalf.add(offset));
+    const zoomAround = (map: SmoothMap, nextZoom: number) => {
+      if (!anchorLatLng || !cursorOffset) return;
+      const center = map.unproject(
+        map.project(anchorLatLng, nextZoom).subtract(cursorOffset),
+        nextZoom,
+      );
       map._move(center, nextZoom, { pinch: true, round: false });
     };
 
     const animateZoom = () => {
-      if (!activeMap || !zoomPoint) {
+      if (!activeMap || !anchorLatLng || !cursorOffset) {
         rafId = 0;
         zooming = false;
         return;
@@ -81,13 +84,14 @@ const { lat, lng, zoom = 16, label } = Astro.props;
       const current = activeMap.getZoom();
       const diff = targetZoom - current;
       if (Math.abs(diff) < 0.002) {
-        zoomAround(activeMap, zoomPoint, targetZoom);
+        zoomAround(activeMap, targetZoom);
         activeMap._moveEnd(true);
         rafId = 0;
         zooming = false;
+        lastPoint = null;
         return;
       }
-      zoomAround(activeMap, zoomPoint, current + diff * 0.2);
+      zoomAround(activeMap, current + diff * 0.2);
       rafId = requestAnimationFrame(animateZoom);
     };
 
@@ -96,17 +100,22 @@ const { lat, lng, zoom = 16, label } = Astro.props;
       (e) => {
         if (!activeMap) return;
         e.preventDefault();
+        const point = activeMap.mouseEventToContainerPoint(e);
         if (!zooming) {
           targetZoom = activeMap.getZoom();
           activeMap._moveStart(true, false);
           zooming = true;
+        }
+        if (!lastPoint || !point.equals(lastPoint)) {
+          anchorLatLng = activeMap.containerPointToLatLng(point);
+          cursorOffset = point.subtract(activeMap.getSize().divideBy(2));
+          lastPoint = point;
         }
         const delta = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
         targetZoom = Math.min(
           activeMap.getMaxZoom(),
           Math.max(activeMap.getMinZoom(), targetZoom - delta * 0.002),
         );
-        zoomPoint = activeMap.mouseEventToContainerPoint(e);
         if (!rafId) rafId = requestAnimationFrame(animateZoom);
       },
       { passive: false },
