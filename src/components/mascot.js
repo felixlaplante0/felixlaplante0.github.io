@@ -4,19 +4,27 @@ document.addEventListener("astro:page-load", async () => {
   const img = document.querySelector(".mascot img");
   if (!img || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+  const ac = new AbortController();
+  const { signal } = ac;
+  let animations;
+  document.addEventListener("astro:before-swap", () => {
+    ac.abort();
+    animations?.revert();
+  }, { once: true });
+
   let svg;
   try {
-    const text = await (await fetch(img.src)).text();
-    svg = new DOMParser().parseFromString(text, "image/svg+xml").documentElement;
+    const response = await fetch(img.src, { signal });
+    if (!response.ok) return;
+    svg = new DOMParser().parseFromString(await response.text(), "image/svg+xml").documentElement;
   } catch {
     return;
   }
-  if (!svg || svg.nodeName !== "svg") return;
+  if (signal.aborted || !img.isConnected || svg.localName !== "svg") return;
+  animations = gsap.context((ctx) => animateMascot(svg, img, signal, ctx));
+});
 
-  const ac = new AbortController();
-  document.addEventListener("astro:before-swap", () => ac.abort(), { once: true });
-  const { signal } = ac;
-
+function animateMascot(svg, img, signal, ctx) {
   const NS = "http://www.w3.org/2000/svg";
   const $ = (id) => svg.querySelector(`#${id}`);
   const el = (tag, attrs = {}) => {
@@ -32,7 +40,6 @@ document.addEventListener("astro:page-load", async () => {
     return g;
   };
 
-  svg.querySelector("sodipodi\\:namedview, namedview")?.remove();
   svg.removeAttribute("width");
   svg.removeAttribute("height");
   svg.classList.add("mascot-svg");
@@ -41,15 +48,16 @@ document.addEventListener("astro:page-load", async () => {
 
   // Each part's outline (#outline-<part>) moves into the part's group.
   const parts = {
-    leaf: range(52, 56),
+    leaf: [$("path52"), $("path53"), $("path55")],
     legR: [$("path26"), ...range(57, 59)],
     armR: range(60, 63),
     legL: range(64, 66),
     armL: range(67, 68),
   };
   const silhouette = $("path2");
-  const defs = el("defs");
-  svg.prepend(defs);
+  const artwork = $("svg68");
+  const outline = $("outline");
+  const defs = svg.querySelector("defs");
   const box = { maskUnits: "userSpaceOnUse", x: -100, y: -100, width: 800, height: 1150 };
 
   // Parts are drawn above the body, so mask their outlines where they overlap it.
@@ -69,7 +77,7 @@ document.addEventListener("astro:page-load", async () => {
 
   // Fill the notch in the body under the right foot.
   const notch = el("path", {
-    d: "M 336 838 C 362 830 392 816 409 795 L 399 803 L 383 806 L 363 809 L 347 815 L 343 821 L 343 837 Z",
+    d: $("outline-body").lastElementChild.getAttribute("d"),
     fill: "#99d172",
   });
   silhouette.after(notch);
@@ -80,18 +88,24 @@ document.addEventListener("astro:page-load", async () => {
     defs.append(c);
     return `url(#${id})`;
   };
-  const eyeL = wrap([$("path6"), ...range(10, 20)]);
-  const eyeR = wrap(range(42, 50));
-  const glintL = wrap([$("path12")]);
-  wrap([glintL], { "clip-path": clip("zm-irisL", [$("path11")]) });
-  const glintR = wrap([$("path45")]);
-  wrap([glintR], { "clip-path": clip("zm-irisR", [$("path42")]) });
+  const face = $("face");
+  const makeEye = (side) => {
+    const eye = wrap([...face.querySelectorAll(`[id^="${side}-"]`)]);
+    const glint = wrap([$(`${side}-glint`)]);
+    wrap([glint], { "clip-path": clip(`zm-${side}-pupil`, [$(`${side}-pupil`)]) });
+    return { eye, glint };
+  };
+  const { eye: eyeL, glint: glintL } = makeEye("left");
+  const { eye: eyeR, glint: glintR } = makeEye("right");
 
   const groups = {};
   for (const [name, paths] of Object.entries(parts)) {
     groups[name] = wrap(paths);
     const rim = $(`outline-${name}`);
     if (rim) {
+      for (const attr of ["fill", "stroke", "stroke-width", "stroke-linejoin"]) {
+        rim.setAttribute(attr, outline.getAttribute(attr));
+      }
       if (name !== "armL") rim.setAttribute("mask", name.startsWith("leg") ? offBodyFeet : offBodyMask);
       groups[name].prepend(rim);
     }
@@ -101,11 +115,11 @@ document.addEventListener("astro:page-load", async () => {
   const leafJump = wrap([leaf]);
   // The left foot and arm sit behind the body with a hidden extension, so
   // turning them never opens a gap at the joint.
-  legL.children[0].after(el("ellipse", { cx: 186, cy: 818, rx: 24, ry: 22, fill: "#55c775" }));
-  armL.children[0].after(el("ellipse", { cx: 152, cy: 532, rx: 34, ry: 32, fill: "#55c775" }));
-  const upper = wrap([...svg.children].filter((n) => n !== defs && ![legR, armR, legL, armL].includes(n)));
+  legL.children[0].after(el("ellipse", { cx: 196, cy: 828, rx: 24, ry: 22, fill: "#55c775" }));
+  armL.children[0].after(el("ellipse", { cx: 162, cy: 542, rx: 34, ry: 32, fill: "#55c775" }));
+  const upper = wrap([...artwork.children].filter((n) => ![legR, armR, legL, armL].includes(n)));
   const root = wrap([legL, armL, upper, legR, armR]);
-  const shadow = el("ellipse", { cx: 280, cy: 912, rx: 215, ry: 20, fill: "#074e2d", opacity: 0.18 });
+  const shadow = el("ellipse", { cx: 290, cy: 922, rx: 215, ry: 20, fill: "#074e2d", opacity: 0.18 });
   root.before(shadow);
   const arms = [armL, armR];
   const legs = [legL, legR];
@@ -134,16 +148,16 @@ document.addEventListener("astro:page-load", async () => {
 
   img.replaceWith(svg);
 
-  gsap.set(armL, { svgOrigin: "118 515" });
-  gsap.set(armR, { svgOrigin: "410 510" });
-  gsap.set(legL, { svgOrigin: "180 838" });
-  gsap.set(legR, { svgOrigin: "345 838" });
-  gsap.set(upper, { svgOrigin: "280 850" });
-  gsap.set(root, { svgOrigin: "280 915" });
-  gsap.set(eyeL, { svgOrigin: "195 460" });
-  gsap.set(eyeR, { svgOrigin: "335 462" });
-  gsap.set([leaf, leafJump], { svgOrigin: "280 196" });
-  gsap.set(shadow, { svgOrigin: "280 912" });
+  gsap.set(armL, { svgOrigin: "128 525" });
+  gsap.set(armR, { svgOrigin: "420 520" });
+  gsap.set(legL, { svgOrigin: "190 848" });
+  gsap.set(legR, { svgOrigin: "355 848" });
+  gsap.set(upper, { svgOrigin: "290 860" });
+  gsap.set(root, { svgOrigin: "290 925" });
+  gsap.set(eyeL, { transformOrigin: "50% 60%" });
+  gsap.set(eyeR, { transformOrigin: "50% 60%" });
+  gsap.set([leaf, leafJump], { svgOrigin: "290 206" });
+  gsap.set(shadow, { svgOrigin: "290 922" });
   gsap.set(bang, { svgOrigin: "460 260" });
 
   const leafSway = gsap.fromTo(leaf, { rotation: -5 },
@@ -168,17 +182,17 @@ document.addEventListener("astro:page-load", async () => {
 
   // Per-glint rest spot and rightward reach.
   const gaze = [
-    { glint: glintL, rest: { x: -2, y: 2 }, right: 1 },
-    { glint: glintR, rest: { x: -1, y: 2 }, right: 5 },
+    { glint: glintL, rest: { x: 0, y: 0 }, right: 1 },
+    { glint: glintR, rest: { x: 0, y: 0 }, right: 5 },
   ];
   const toRest = (vars) => gaze.forEach(({ glint, rest }) => gsap.to(glint, { ...rest, ...vars }));
   gaze.forEach(({ glint, rest }) => gsap.set(glint, rest));
   const follow = (e) => {
     if (state === "sleep" || state === "tired" || state === "love") return;
-    const ctm = svg.getScreenCTM();
+    const ctm = face.getScreenCTM();
     if (!ctm) return;
-    const cx = (265 * ctm.a) + ctm.e;
-    const cy = (462 * ctm.d) + ctm.f;
+    const cx = (275 * ctm.a) + ctm.e;
+    const cy = (472 * ctm.d) + ctm.f;
     const dx = e.clientX - cx;
     const dy = e.clientY - cy;
     // Glints move in a tall ellipse: axes independent inside, clamped at its edge.
@@ -273,9 +287,9 @@ document.addEventListener("astro:page-load", async () => {
     // Keep the shoulders attached to the panting body.
     const { scaleX, scaleY, ...beat } = pant;
     const shoulder = (arm, sx, sy) =>
-      tl.to(arm, { x: (sx - 280) * (scaleX - 1), y: 22 + (sy - 850) * (scaleY - 1), ...beat }, 0.4);
-    shoulder(armL, 118, 515);
-    shoulder(armR, 410, 510);
+      tl.to(arm, { x: (sx - 290) * (scaleX - 1), y: 22 + (sy - 860) * (scaleY - 1), ...beat }, 0.4);
+    shoulder(armL, 128, 525);
+    shoulder(armR, 420, 520);
   };
   const recover = () => {
     sweatTl.pause();
@@ -385,7 +399,7 @@ document.addEventListener("astro:page-load", async () => {
     if (state !== "love") return;
     petted = true;
     clearTimeout(loveTimer);
-    loveTimer = setTimeout(endLove, 800);
+    loveTimer = setTimeout(finishLove, 800);
     const { left, width } = svg.getBoundingClientRect();
     gsap.to(root, { rotation: gsap.utils.clamp(-1, 1, (e.clientX - left) / width * 2 - 1), duration: 0.4, overwrite: "auto" });
     if (e.timeStamp - lastHeart > 220) {
@@ -394,30 +408,33 @@ document.addEventListener("astro:page-load", async () => {
     }
   };
 
+  const finishLove = ctx.add(null, endLove);
+  const fallAsleep = ctx.add(null, sleep);
   let timer;
   const SLEEP_AFTER = 6000;
-  const nap = () => { clearTimeout(timer); timer = setTimeout(sleep, SLEEP_AFTER); };
+  const nap = () => { clearTimeout(timer); timer = setTimeout(fallAsleep, SLEEP_AFTER); };
 
-  window.addEventListener("pointermove", (e) => { follow(e); nap(); }, { passive: true, signal });
-  window.addEventListener("keydown", () => { wake(); nap(); }, { signal });
-  svg.addEventListener("pointerenter", () => { wake(); nap(); });
+  window.addEventListener("pointermove", ctx.add(null, (e) => { follow(e); nap(); }), { passive: true, signal });
+  window.addEventListener("keydown", ctx.add(null, () => { wake(); nap(); }), { signal });
+  svg.addEventListener("pointerenter", ctx.add(null, () => { wake(); nap(); }), { signal });
   svg.addEventListener("pointerdown", (e) => {
     if (e.button !== 0) return;
     rubbing = { x: e.clientX, y: e.clientY, t: e.timeStamp, energy: 0 };
     petted = false;
-  });
-  svg.addEventListener("pointermove", rub);
+  }, { signal });
+  svg.addEventListener("pointermove", ctx.add(null, rub), { signal });
   const release = () => { rubbing = null; endLove(); };
-  window.addEventListener("pointerup", release, { signal });
-  window.addEventListener("pointercancel", release, { signal });
+  window.addEventListener("pointerup", ctx.add(null, release), { signal });
+  window.addEventListener("pointercancel", ctx.add(null, release), { signal });
   svg.style.touchAction = "none";
-  svg.addEventListener("click", () => {
+  svg.addEventListener("click", ctx.add(null, () => {
     nap();
     if (petted) petted = false;
     else if (state === "sleep") wake();
     else press();
-  });
+  }), { signal });
   svg.style.cursor = "pointer";
   svg.style.webkitTapHighlightColor = "transparent";
   nap();
-});
+  return () => { clearTimeout(timer); clearTimeout(loveTimer); };
+}
