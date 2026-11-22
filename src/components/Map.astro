@@ -46,7 +46,7 @@ const { lat, lng, zoom = 16, label } = Astro.props;
     });
 
     activeMap.addControl(new NavigationControl({ showCompass: false }), "top-right");
-    new Marker({ color: "#0f4c81" }).setLngLat([lng, lat]).addTo(activeMap);
+    new Marker({ color: "#0f4c81", scale: 0.9 }).setLngLat([lng, lat]).addTo(activeMap);
   }
 
   document.addEventListener("astro:page-load", initMap);
