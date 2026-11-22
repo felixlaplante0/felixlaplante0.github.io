@@ -18,6 +18,12 @@ const { lat, lng, zoom = 16, label } = Astro.props;
   import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
   import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
+  type SmoothMap = L.Map & {
+    _moveStart(zoomChanged: boolean, noMoveStart: boolean): void;
+    _move(center: L.LatLng, zoom: number, data?: { pinch?: boolean; round?: boolean }): void;
+    _moveEnd(zoomChanged: boolean): void;
+  };
+
   const icon = L.icon({
     iconUrl: markerIcon.src,
     iconRetinaUrl: markerIcon2x.src,
@@ -28,7 +34,8 @@ const { lat, lng, zoom = 16, label } = Astro.props;
     shadowSize: [41, 41],
   });
 
-  let activeMap: L.Map | undefined;
+  let activeMap: SmoothMap | undefined;
+  let rafId = 0;
 
   function initMap() {
     const el = document.querySelector<HTMLElement>(".map[data-lat]");
@@ -40,21 +47,76 @@ const { lat, lng, zoom = 16, label } = Astro.props;
     const zoom = Number(el.dataset.zoom ?? 16);
 
     activeMap = L.map(el, {
-      zoomSnap: 0.25,
+      zoomSnap: 0,
       zoomDelta: 0.5,
-      wheelPxPerZoomLevel: 150,
-    }).setView([lat, lng], zoom);
+      scrollWheelZoom: false,
+    }).setView([lat, lng], zoom) as SmoothMap;
 
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
+      keepBuffer: 4,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(activeMap);
 
     L.marker([lat, lng], { icon }).addTo(activeMap);
+
+    let targetZoom = zoom;
+    let zoomPoint: L.Point | null = null;
+    let zooming = false;
+
+    const zoomAround = (map: SmoothMap, point: L.Point, nextZoom: number) => {
+      const scale = map.getZoomScale(nextZoom, map.getZoom());
+      const viewHalf = map.getSize().divideBy(2);
+      const offset = point.subtract(viewHalf).multiplyBy(1 - 1 / scale);
+      const center = map.containerPointToLatLng(viewHalf.add(offset));
+      map._move(center, nextZoom, { pinch: true, round: false });
+    };
+
+    const animateZoom = () => {
+      if (!activeMap || !zoomPoint) {
+        rafId = 0;
+        zooming = false;
+        return;
+      }
+      const current = activeMap.getZoom();
+      const diff = targetZoom - current;
+      if (Math.abs(diff) < 0.002) {
+        zoomAround(activeMap, zoomPoint, targetZoom);
+        activeMap._moveEnd(true);
+        rafId = 0;
+        zooming = false;
+        return;
+      }
+      zoomAround(activeMap, zoomPoint, current + diff * 0.2);
+      rafId = requestAnimationFrame(animateZoom);
+    };
+
+    el.addEventListener(
+      "wheel",
+      (e) => {
+        if (!activeMap) return;
+        e.preventDefault();
+        if (!zooming) {
+          targetZoom = activeMap.getZoom();
+          activeMap._moveStart(true, false);
+          zooming = true;
+        }
+        const delta = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
+        targetZoom = Math.min(
+          activeMap.getMaxZoom(),
+          Math.max(activeMap.getMinZoom(), targetZoom - delta * 0.002),
+        );
+        zoomPoint = activeMap.mouseEventToContainerPoint(e);
+        if (!rafId) rafId = requestAnimationFrame(animateZoom);
+      },
+      { passive: false },
+    );
   }
 
   document.addEventListener("astro:page-load", initMap);
   document.addEventListener("astro:before-swap", () => {
+    cancelAnimationFrame(rafId);
+    rafId = 0;
     activeMap?.remove();
     activeMap = undefined;
   });
