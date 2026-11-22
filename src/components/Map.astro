@@ -12,30 +12,10 @@ const { lat, lng, zoom = 16, label } = Astro.props;
 <div class="map" role="region" aria-label={label} data-lat={lat} data-lng={lng} data-zoom={zoom}></div>
 
 <script>
-  import L from "leaflet";
-  import "leaflet/dist/leaflet.css";
-  import markerIcon from "leaflet/dist/images/marker-icon.png";
-  import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
-  import markerShadow from "leaflet/dist/images/marker-shadow.png";
+  import { Map as MapLibreMap, Marker, NavigationControl } from "maplibre-gl";
+  import "maplibre-gl/dist/maplibre-gl.css";
 
-  type SmoothMap = L.Map & {
-    _moveStart(zoomChanged: boolean, noMoveStart: boolean): void;
-    _move(center: L.LatLng, zoom: number, data?: { pinch?: boolean; round?: boolean }): void;
-    _moveEnd(zoomChanged: boolean): void;
-  };
-
-  const icon = L.icon({
-    iconUrl: markerIcon.src,
-    iconRetinaUrl: markerIcon2x.src,
-    shadowUrl: markerShadow.src,
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41],
-  });
-
-  let activeMap: SmoothMap | undefined;
-  let rafId = 0;
+  let activeMap: MapLibreMap | undefined;
 
   function initMap() {
     const el = document.querySelector<HTMLElement>(".map[data-lat]");
@@ -46,86 +26,19 @@ const { lat, lng, zoom = 16, label } = Astro.props;
     const lng = Number(el.dataset.lng);
     const zoom = Number(el.dataset.zoom ?? 16);
 
-    activeMap = L.map(el, {
-      zoomSnap: 0,
-      zoomDelta: 0.5,
-      scrollWheelZoom: false,
-    }).setView([lat, lng], zoom) as SmoothMap;
+    activeMap = new MapLibreMap({
+      container: el,
+      style: "https://tiles.openfreemap.org/styles/liberty",
+      center: [lng, lat],
+      zoom,
+    });
 
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
-      keepBuffer: 4,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    }).addTo(activeMap);
-
-    L.marker([lat, lng], { icon }).addTo(activeMap);
-
-    let targetZoom = zoom;
-    let anchorLatLng: L.LatLng | null = null;
-    let cursorOffset: L.Point | null = null;
-    let lastPoint: L.Point | null = null;
-    let zooming = false;
-
-    const zoomAround = (map: SmoothMap, nextZoom: number) => {
-      if (!anchorLatLng || !cursorOffset) return;
-      const center = map.unproject(
-        map.project(anchorLatLng, nextZoom).subtract(cursorOffset),
-        nextZoom,
-      );
-      map._move(center, nextZoom, { pinch: true, round: false });
-    };
-
-    const animateZoom = () => {
-      if (!activeMap || !anchorLatLng || !cursorOffset) {
-        rafId = 0;
-        zooming = false;
-        return;
-      }
-      const current = activeMap.getZoom();
-      const diff = targetZoom - current;
-      if (Math.abs(diff) < 0.002) {
-        zoomAround(activeMap, targetZoom);
-        activeMap._moveEnd(true);
-        rafId = 0;
-        zooming = false;
-        lastPoint = null;
-        return;
-      }
-      zoomAround(activeMap, current + diff * 0.2);
-      rafId = requestAnimationFrame(animateZoom);
-    };
-
-    el.addEventListener(
-      "wheel",
-      (e) => {
-        if (!activeMap) return;
-        e.preventDefault();
-        const point = activeMap.mouseEventToContainerPoint(e);
-        if (!zooming) {
-          targetZoom = activeMap.getZoom();
-          activeMap._moveStart(true, false);
-          zooming = true;
-        }
-        if (!lastPoint || !point.equals(lastPoint)) {
-          anchorLatLng = activeMap.containerPointToLatLng(point);
-          cursorOffset = point.subtract(activeMap.getSize().divideBy(2));
-          lastPoint = point;
-        }
-        const delta = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
-        targetZoom = Math.min(
-          activeMap.getMaxZoom(),
-          Math.max(activeMap.getMinZoom(), targetZoom - delta * 0.002),
-        );
-        if (!rafId) rafId = requestAnimationFrame(animateZoom);
-      },
-      { passive: false },
-    );
+    activeMap.addControl(new NavigationControl({ showCompass: false }), "top-right");
+    new Marker({ color: "#0f4c81" }).setLngLat([lng, lat]).addTo(activeMap);
   }
 
   document.addEventListener("astro:page-load", initMap);
   document.addEventListener("astro:before-swap", () => {
-    cancelAnimationFrame(rafId);
-    rafId = 0;
     activeMap?.remove();
     activeMap = undefined;
   });
