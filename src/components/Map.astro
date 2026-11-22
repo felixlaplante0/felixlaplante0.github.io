@@ -1,0 +1,61 @@
+---
+interface Props {
+  lat: number;
+  lng: number;
+  zoom?: number;
+  label: string;
+}
+
+const { lat, lng, zoom = 16, label } = Astro.props;
+---
+
+<div class="map" role="region" aria-label={label} data-lat={lat} data-lng={lng} data-zoom={zoom}></div>
+
+<script>
+  import L from "leaflet";
+  import "leaflet/dist/leaflet.css";
+  import markerIcon from "leaflet/dist/images/marker-icon.png";
+  import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+  import markerShadow from "leaflet/dist/images/marker-shadow.png";
+
+  const icon = L.icon({
+    iconUrl: markerIcon.src,
+    iconRetinaUrl: markerIcon2x.src,
+    shadowUrl: markerShadow.src,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
+
+  let activeMap: L.Map | undefined;
+
+  function initMap() {
+    const el = document.querySelector<HTMLElement>(".map[data-lat]");
+    if (!el || el.dataset.ready) return;
+    el.dataset.ready = "true";
+
+    const lat = Number(el.dataset.lat);
+    const lng = Number(el.dataset.lng);
+    const zoom = Number(el.dataset.zoom ?? 16);
+
+    activeMap = L.map(el, {
+      zoomSnap: 0.25,
+      zoomDelta: 0.5,
+      wheelPxPerZoomLevel: 150,
+    }).setView([lat, lng], zoom);
+
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(activeMap);
+
+    L.marker([lat, lng], { icon }).addTo(activeMap);
+  }
+
+  document.addEventListener("astro:page-load", initMap);
+  document.addEventListener("astro:before-swap", () => {
+    activeMap?.remove();
+    activeMap = undefined;
+  });
+</script>
