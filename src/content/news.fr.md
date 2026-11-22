@@ -1,0 +1,5 @@
+- **Octobre 2026** J’ai reçu une bourse de déplacement de l’[ICSDS 2026](https://sites.google.com/view/ims-icsds2026/home).
+- **Septembre 2026** J’ai mis en ligne [Atelier LLM](https://atelier-llm.pages.dev), qui réunit les diapositives, les notebooks et les notes de mon atelier sur les grands modèles de langage.
+- **Juillet 2026** Nouvelle prépublication, [Contrast-Free ICA and Causal Inference via Wasserstein Distances to the Gaussian](https://arxiv.org/abs/2607.12832).
+- **Mai 2026** Nouvelle prépublication, [A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores](https://arxiv.org/abs/2605.25852).
+- **Mai 2026** Je coorganise un groupe de travail sur la causalité avec [Pierre Humbert](https://pierrehmbt.github.io).

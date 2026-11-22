@@ -2,7 +2,7 @@
 import { Font } from "astro:assets";
 
 interface Props {
-  translation: string;
+  translation?: string;
   author: string;
 }
 
@@ -13,6 +13,6 @@ const { translation, author } = Astro.props;
 
 <blockquote class="quote">
   <p lang="fr"><em><slot /></em></p>
-  <p class="translation"><em>{translation}</em></p>
+  {translation && <p class="translation" lang="en"><em>{translation}</em></p>}
   <footer>— {author}</footer>
 </blockquote>

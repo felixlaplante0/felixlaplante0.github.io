@@ -4,12 +4,15 @@ import { monthYear, newestFirst } from "../lib/dates";
 
 const talks = (await getCollection("talks")).sort(newestFirst);
 const rendered = await Promise.all(talks.map(async (talk) => ({ ...talk.data, ...(await render(talk)) })));
+const locale = Astro.currentLocale ?? "en";
+const french = locale === "fr";
+const kinds = { Talk: "Exposé", Poster: "Affiche" };
 ---
 
-{rendered.map(({ title, kind, event, place, date, Content }) => (
+{rendered.map(({ title, kind, event, place, date, descriptionFr, Content }) => (
   <article class="entry">
-    <h3>{title}</h3>
-    <p class="venue">{kind} · <em>{event}</em>, {place}, {monthYear(date)}</p>
-    <Content />
+    <h3 lang="en">{title}</h3>
+    <p class="venue">{french ? kinds[kind] : kind} · <em>{event}</em>, {place}, {monthYear(date, locale)}</p>
+    {french ? <p>{descriptionFr}</p> : <Content />}
   </article>
 ))}

@@ -7,6 +7,11 @@ const font = (name, cssVariable, options) => ({ provider: fontProviders.fontsour
 
 export default defineConfig({
   site: "https://felixlaplante.com",
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "fr"],
+    routing: { prefixDefaultLocale: false },
+  },
   integrations: [mdx(), icon(), sitemap()],
   fonts: [
     font("Source Sans 3", "--font-body", { weights: [400, 600], styles: ["normal", "italic"], fallbacks: ["system-ui", "sans-serif"] }),

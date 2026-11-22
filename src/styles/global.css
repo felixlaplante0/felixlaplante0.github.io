@@ -100,13 +100,13 @@ nav {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem 1.1rem;
+  gap: 0.5rem 0.9rem;
   padding: 0.5rem 1.5rem;
 
   ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.25rem 1.1rem;
+    gap: 0.25rem 0.9rem;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -127,12 +127,19 @@ nav {
   #menu {
     display: flex;
     flex: 1;
-    gap: 0.5rem 1.1rem;
+    align-items: center;
+    gap: 0.5rem 0.9rem;
     margin-left: 0.4rem;
   }
 
   .socials {
+    align-items: center;
     margin-left: auto;
+
+    a {
+      display: flex;
+      align-items: center;
+    }
   }
 
   .menu-toggle {
@@ -145,13 +152,10 @@ nav {
       display: block;
     }
 
-    #theme {
-      margin-left: auto;
-    }
-
     #menu {
       display: none;
       flex-direction: column;
+      align-items: stretch;
       flex-basis: 100%;
       order: 1;
       margin: 0 0 0.5rem;
@@ -167,6 +171,51 @@ nav {
 
     .socials {
       margin-left: 0;
+    }
+  }
+}
+
+.site-settings {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-inline-start: auto;
+  padding-inline-start: 0.9rem;
+
+  &::before {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: 0;
+    height: 1.5rem;
+    transform: translateY(-50%);
+    border-inline-start: 1px solid var(--rule);
+    content: "";
+  }
+
+  @media (width < 48rem) {
+    padding-inline-start: 0;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  a,
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .language {
+    gap: 0.3rem;
+
+    span {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-box: trim-both cap alphabetic;
     }
   }
 }

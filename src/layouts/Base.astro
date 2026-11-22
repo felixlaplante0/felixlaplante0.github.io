@@ -1,21 +1,56 @@
 ---
 import { Font } from "astro:assets";
+import { getAbsoluteLocaleUrl, getRelativeLocaleUrl } from "astro:i18n";
 import { ClientRouter } from "astro:transitions";
 import { Icon } from "astro-icon/components";
 import { pages, socials, title as site } from "../site";
 import "../styles/global.css";
 
 const { title } = Astro.props.frontmatter;
+const locale = Astro.currentLocale === "fr" ? "fr" : "en";
+const otherLocale = locale === "fr" ? "en" : "fr";
+const path = Astro.url.pathname.slice(getRelativeLocaleUrl(locale).replace(/\/$/, "").length);
+const themeLabel = locale === "fr" ? "Basculer le mode sombre" : "Toggle dark mode";
+const languageLabel = otherLocale === "fr" ? "Passer en français" : "Switch to English";
 ---
 
 <!doctype html>
-<html lang="en" transition:animate="none">
+<html lang={locale} transition:animate="none">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title === site ? site : `${title} – ${site}`}</title>
     <link rel="icon" href="/assets/logo.svg" />
-    <link rel="canonical" href={Astro.url} />
+    <link rel="canonical" href={getAbsoluteLocaleUrl(locale, path)} />
+    <link rel="alternate" hreflang="en" href={getAbsoluteLocaleUrl("en", path)} />
+    <link rel="alternate" hreflang="fr" href={getAbsoluteLocaleUrl("fr", path)} />
+    <script is:inline>
+      (() => {
+        const key = "site-language";
+        let preferred;
+        try {
+          preferred = localStorage.getItem(key);
+        } catch {
+          return;
+        }
+        const locale = document.documentElement.lang;
+        const browserLocale = navigator.languages
+          .map((language) => language.toLowerCase().split("-")[0])
+          .find((language) => language === "en" || language === "fr");
+        if (locale === "en" && (preferred ?? browserLocale) === "fr") {
+          const alternate = document.querySelector('link[hreflang="fr"]');
+          const { pathname } = new URL(alternate.href);
+          location.replace(pathname + location.search + location.hash);
+        }
+        document.addEventListener("click", (event) => {
+          const link = event.target.closest?.("a.language");
+          if (!link) return;
+          try {
+            localStorage.setItem(key, link.hreflang);
+          } catch {}
+        });
+      })();
+    </script>
     <Font cssVariable="--font-body" preload={[{ weight: 400, style: "normal" }]} />
     <Font cssVariable="--font-heading" />
     <ClientRouter />
@@ -29,20 +64,29 @@ const { title } = Astro.props.frontmatter;
     <header transition:persist>
       <nav>
         <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="menu"><Icon name="bi:list" /></button>
-        <a href="/" class="logo"><img src="/assets/logo.svg" alt={site} /></a>
+        <a href={getRelativeLocaleUrl(locale)} class="logo"><img src="/assets/logo.svg" alt={site} /></a>
         <div id="menu">
           <ul class="pages">
-            {pages.map(({ href, label }) => (
-              <li><a href={href} aria-current={Astro.url.pathname === href ? "page" : undefined}>{label}</a></li>
-            ))}
+            {pages.map((page) => {
+              const href = page.asset ?? getRelativeLocaleUrl(locale, page.path);
+              return <li><a href={href} aria-current={Astro.url.pathname === href ? "page" : undefined}>{page[locale]}</a></li>;
+            })}
           </ul>
           <ul class="socials">
-            {socials.map(({ href, label, icon }) => (
-              <li><a href={href} aria-label={label} title={label}><Icon name={icon} /></a></li>
-            ))}
+            {socials.map(({ href, label, labelFr, icon }) => {
+              const name = locale === "fr" ? (labelFr ?? label) : label;
+              return <li><a href={href} aria-label={name} title={name}><Icon name={icon} /></a></li>;
+            })}
           </ul>
         </div>
-        <button id="theme" aria-label="Toggle dark mode" title="Toggle dark mode"><Icon name="bi:sun" class="light" /><Icon name="bi:moon-stars" class="dark" /></button>
+        <div class="site-settings">
+          <a class="language" href={getRelativeLocaleUrl(otherLocale, path)} hreflang={otherLocale}
+            aria-label={languageLabel} title={languageLabel} data-astro-reload>
+            <Icon name="bi:globe2" />
+            <span aria-hidden="true">{locale.toUpperCase()}</span>
+          </a>
+          <button id="theme" aria-label={themeLabel} title={themeLabel}><Icon name="bi:sun" class="light" /><Icon name="bi:moon-stars" class="dark" /></button>
+        </div>
       </nav>
     </header>
     <main>
@@ -65,6 +109,10 @@ const { title } = Astro.props.frontmatter;
           if (a.pathname === location.pathname) a.setAttribute("aria-current", "page");
           else a.removeAttribute("aria-current");
         }
+        const locale = document.documentElement.lang;
+        const otherLocale = locale === "fr" ? "en" : "fr";
+        const alternate = document.querySelector<HTMLLinkElement>(`link[hreflang="${otherLocale}"]`)!;
+        document.querySelector<HTMLAnchorElement>(".language")!.href = new URL(alternate.href).pathname;
       });
 
       const root = document.documentElement;

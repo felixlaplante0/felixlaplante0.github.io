@@ -1,6 +1,10 @@
+---
+const french = Astro.currentLocale === "fr";
+---
+
 <figure class="mascot">
-  <img src="/assets/logo.svg" alt="Zucchini mascot" />
-  <figcaption>My beloved zucchini</figcaption>
+  <img src="/assets/logo.svg" alt={french ? "Mascotte en forme de courgette" : "Zucchini mascot"} />
+  <figcaption>{french ? "Ma courgette bien-aimée" : "My beloved zucchini"}</figcaption>
 </figure>
 
 <script>

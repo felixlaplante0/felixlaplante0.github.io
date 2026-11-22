@@ -1,0 +1,25 @@
+---
+layout: ../../layouts/Base.astro
+title: Félix Laplante
+---
+
+import Mascot from "../../components/Mascot.astro";
+import Quote from "../../components/Quote.astro";
+import { Content as News } from "../../content/news.fr.md";
+
+<Mascot />
+
+<Quote author="Antoine de Saint-Exupéry">
+  La perfection est atteinte, non pas lorsqu'il n'y a plus rien à ajouter, mais lorsqu'il n'y a plus rien à retirer.
+</Quote>
+
+Depuis octobre 2026, je fais une thèse sur la **causalité** au Laboratoire de mathématiques et modélisation d’Évry (LaMME), à l’Université Paris-Saclay, sous la direction de [Christophe Ambroise](https://ambroise.cloud), [Gilles Blanchard](https://www.imo.universite-paris-saclay.fr/~blanchard/) et [Pierre Humbert](https://pierrehmbt.github.io). J’ai obtenu mon master en mathématiques et intelligence artificielle à l’Université Paris-Saclay, où j’ai terminé en tête de ma promotion. Je m’intéresse à la découverte causale, au transport optimal, à la prédiction conforme et à l’équité statistique. J’aime autant travailler sur la théorie que développer des algorithmes et optimiser leur implémentation en Python.
+
+Je joue régulièrement du piano, j’aime jardiner et je voyage dès que j’en ai l’occasion. J’éprouve une étrange fascination pour les Alpes (j’ai un faible pour les Alpes suisses), où l’immensité paisible des montagnes me rappelle combien le monde est vaste et quelle joie j’ai à le découvrir.
+
+Je fais aussi de la macrophotographie. J’aime prendre le temps d’observer les insectes, les araignées et les petites plantes qu’on remarque à peine d’habitude, et d’essayer de leur rendre justice en photo.
+
+<section class="news">
+  <h3>Actualités</h3>
+  <News />
+</section>

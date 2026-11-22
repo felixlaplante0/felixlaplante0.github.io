@@ -1,0 +1,16 @@
+---
+layout: ../../layouts/Base.astro
+title: Contact
+---
+
+**Félix Laplante**
+
+Laboratoire de Mathématiques et Modélisation d'Évry (LaMME)
+
+Université Paris-Saclay, Univ Évry\
+23 boulevard de France\
+91034 Évry-Courcouronnes, France
+
+[contact@felixlaplante.com](mailto:contact@felixlaplante.com)
+
+<iframe class="map" title="Carte du LaMME" src="https://www.openstreetmap.org/export/embed.html?bbox=2.4360%2C48.6220%2C2.4460%2C48.6280&layer=mapnik&marker=48.6250%2C2.4410" allowfullscreen></iframe>
